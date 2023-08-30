@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body header {
+    background-color: dimgrey;
+    width: 100%;
+}
+
+
+.clock{
+    font-family: 'EB Garamond', serif;
+    font-size: 5em;
+}
+
+.count-moves{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-style: italic;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+
+}
