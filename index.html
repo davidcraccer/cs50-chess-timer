@@ -91,55 +91,54 @@
                 <p class="time-mode mt-1 mb-3">3 min</p>
             </div>
         </section>
-        
     </main>
     
-        <div class="adjust-time hidden">
-            <div>
-                <span id="sec-change-time" class="material-symbols-outlined">
-                    tune
-                </span>
-                <p>ADJUST TIME</p>
-            </div>
-            <div class="time">
-                <div>
-                    <label for="hours">Hour</label>
-                    <input type="number" id="hours" min="0" max="99" value="0">
-                </div>
-                <div>
-                    <label for="minutes">Minute</label>
-                    <input type="number" id="minutes" min="0" max="59" value="0">
-                </div>
-                <div>
-                    <label for="seconds">Second</label>
-                    <input type="number" id="seconds" min="0" max="59" value="0">
-                </div>
-                <div class="papa">
-                    <button id="cancel">CANCEL</button>
-                    <button id="save">SAVE TIME</button>
-                </div>
-            </div>
-        </div>
-    
-    <div class="adjust-time2 hidden">
-        <div>
-            <span id="sec-change-time" class="material-symbols-outlined">
-                tune
+    <div class="adjust-time hidden">
+        <div class="title-timer">
+            <span class="material-symbols-outlined small">
+                timer
             </span>
-            <p>ADJUST TIME</p>
+            <p class="smalltitle">ADJUST TIME</p>
         </div>
         <div class="time">
-            <div>
-                <label for="hours">Hour</label>
+            <div class="picktime">
                 <input type="number" id="hours" min="0" max="99" value="0">
-            </div>
-            <div>
-                <label for="minutes">Minute</label>
+                <span class="time-separator">:</span>
                 <input type="number" id="minutes" min="0" max="59" value="0">
-            </div>
-            <div>
-                <label for="seconds">Second</label>
+                <span class="time-separator">:</span>
                 <input type="number" id="seconds" min="0" max="59" value="0">
+            </div>
+            <div class="inputlabel">
+                <label for="hours">Hour</label>
+                <label for="minutes">Minute</label>
+                <label for="seconds">Second</label>
+            </div>
+            <div class="papa">
+                <button id="cancel">CANCEL</button>
+                <button id="save">SAVE TIME</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="adjust-time2 hidden">
+        <div class="title-timer">
+            <span class="material-symbols-outlined small">
+                timer
+            </span>
+            <p class="smalltitle">ADJUST TIME</p>
+        </div>
+        <div class="time">
+            <div class="picktime2">
+                <input type="number" id="hours2" min="0" max="99" value="0">
+                <span class="time-separator">:</span>
+                <input type="number" id="minutes2" min="0" max="59" value="0">
+                <span class="time-separator">:</span>
+                <input type="number" id="seconds2" min="0" max="59" value="0">
+            </div>
+            <div class="inputlabel">
+                <label for="hours">Hour</label>
+                <label for="minutes">Minute</label>
+                <label for="seconds">Second</label>
             </div>
             <div class="papa">
                 <button id="cancel2">CANCEL</button>
