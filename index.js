@@ -7,21 +7,6 @@ const buttons = document.querySelectorAll("button")
 
 let isGameOn = false
 let disableGame = false
-// isGameOn can only be turned on when there are no pop ups
-// if one of the sections are clicked, return to true
-// of 1st section is selected, then isPlayer1Turn false
-// of 2nd section is selected, then isPlayer1Turn true
-// 
-
-
-let isPlayer1Turn = true // true for player 1's turn, false for player 2's turn
-
-if (isPlayer1Turn) {
-  // Field 1 (or any logic related to player 1's turn)
-} else {
-  // Field 2 (or any logic related to player 2's turn)
-}
-
 
 // Add a click event listener to the first timer button.
 timerSettingBtn.addEventListener("click", () => {
@@ -161,49 +146,102 @@ document.addEventListener("DOMContentLoaded", function () {
     spanVolumeOff.hidden = !spanVolumeOff.hidden
   })
 
-function startGame(){
-  let moveCounter1 = 0
-  let moveCounter2 = 0
-  // Define the event listener function for "first-tap."
-  function firstTapClickHandler(e) {
-    if (e.target.parentElement.id !== "change-time") {
-      isGameOn = true
-      isPlayer1Turn = false
-      moveCounter1++
-      document.getElementById("move-counter-1").textContent = moveCounter1
-      
-      document.querySelector(".first-tapping-field").removeEventListener("click", firstTapClickHandler)
-      document.querySelector(".second-tapping-field").addEventListener("click", secondTapClickHandler)
-      
-      // Hide elements with class "hide."
-      document.querySelectorAll(".hide").forEach(element => {
-        element.classList.add("hidden")
-      })
+  function startGame() {
+    let moveCounter1 = 0;
+    let moveCounter2 = 0;
+    // let startGameMoveCounter = 0;
+  
+    // Define the event listener function for "first-tap."
+    function firstTapClickHandler(e) {
+      if (e.target.parentElement.id !== "change-time") {
+        isGameOn = true;
+        moveCounter1++;
+  
+        // if (startGameMoveCounter <= 2) {
+        //   startGameMoveCounter++;
+        //   // Clock Information
+        //   const firstClock = document.getElementById("clock");
+  
+        //   const hoursInput = parseInt(document.getElementById("hours").value, 10);
+        //   const minutesInput = parseInt(
+        //     document.getElementById("minutes").value,
+        //     10
+        //   );
+        //   const secondsInput = parseInt(
+        //     document.getElementById("seconds").value,
+        //     10
+        //   );
+  
+        //   // Start the timer with the provided input values
+        //   startTimer(hoursInput, minutesInput, secondsInput, firstClock);
+        // }
+  
+        document.getElementById("move-counter-1").textContent = moveCounter1;
+  
+        document
+          .querySelector(".first-tapping-field")
+          .removeEventListener("click", firstTapClickHandler);
+        document
+          .querySelector(".second-tapping-field")
+          .addEventListener("click", secondTapClickHandler);
+  
+        // Hide elements with class "hide."
+        document.querySelectorAll(".hide").forEach((element) => {
+          element.classList.add("hidden");
+        });
+      }
     }
+  
+    // Define the event listener function for "second-tap."
+    function secondTapClickHandler(e) {
+      if (e.target.parentElement.id !== "sec-change-time") {
+        isGameOn = true;
+        moveCounter2++;
+  
+        // if (startGameMoveCounter <= 2) {
+        //   startGameMoveCounter++;
+        //   // Clock Information
+        //   const secondClock = document.getElementById("clock");
+  
+        //   const hoursInput2 = parseInt(
+        //     document.getElementById("hours").value,
+        //     10
+        //   );
+        //   const minutesInput2 = parseInt(
+        //     document.getElementById("minutes").value,
+        //     10
+        //   );
+        //   const secondsInput2 = parseInt(
+        //     document.getElementById("seconds").value,
+        //     10
+        //   );
+  
+        //   // Start the timer with the provided input values
+        //   startTimer(hoursInput2, minutesInput2, secondsInput2, secondClock);
+        // }
+  
+        document.getElementById("move-counter-2").textContent = moveCounter2;
+  
+        document
+          .querySelector(".second-tapping-field")
+          .removeEventListener("click", secondTapClickHandler);
+        document
+          .querySelector(".first-tapping-field")
+          .addEventListener("click", firstTapClickHandler);
+  
+        // Hide elements with class "hide."
+        document.querySelectorAll(".hide").forEach((element) => {
+          element.classList.add("hidden");
+        });
+      }
+    }
+  
+    // Add click event listeners to elements with class "first-tap" and "second-tap."
+    document
+      .querySelector(".first-tapping-field")
+      .addEventListener("click", firstTapClickHandler);
+    document
+      .querySelector(".second-tapping-field")
+      .addEventListener("click", secondTapClickHandler);
   }
   
-  // Define the event listener function for "second-tap."
-  function secondTapClickHandler(e) {
-    if (e.target.parentElement.id !== "sec-change-time") {
-      isGameOn = true
-      isPlayer1Turn = true
-      moveCounter2++
-      document.getElementById("move-counter-2").textContent = moveCounter2
-      
-      document.querySelector(".second-tapping-field").removeEventListener("click", secondTapClickHandler)
-      document.querySelector(".first-tapping-field").addEventListener("click", firstTapClickHandler)
-      
-      // Hide elements with class "hide."
-      document.querySelectorAll(".hide").forEach(element => {
-        element.classList.add("hidden")
-      })
-    }
-  }
-  
-  // Add click event listeners to elements with class "first-tap" and "second-tap."
-  document.querySelector(".first-tapping-field").addEventListener("click", firstTapClickHandler)
-  document.querySelector(".second-tapping-field").addEventListener("click", secondTapClickHandler)
-}
-
-
-
