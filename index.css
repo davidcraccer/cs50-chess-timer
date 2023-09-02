@@ -134,6 +134,10 @@ button{
     margin-top: 20px;
 }
 
+input[type="number"]::-webkit-inner-spin-button{
+    appearance: none;
+}
+
 .picktime, .picktime2 :first-child{
     margin-left: 12px;
 }
@@ -155,8 +159,9 @@ button{
 .inputlabel{
     display: flex;
     justify-content: space-around;
-    margin-left: 3px;
+    margin-left: 10px;
     margin-bottom: 20px;
+    margin-right: 6px;
 }
 
 .papa button{
