@@ -28,7 +28,7 @@
         <div class="title-back">
             <a href="timecontrol.html" class="mx-3">
                 <button id="back-btn">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined white-smoke">
                         arrow_back
                     </span>
                 </button>
@@ -42,8 +42,8 @@
         <div class="container">
             <input class="custom-time-name" type="text" placeholder="Name">
             <div class="custom-time-field">
-                <h6>Time</h6>
-                <div>
+                <h6>Time:</h6>
+                <div class="top">
                     <div class="pick-time">
                         <input class="custom-time-input" type="number" id="hours" min="0" max="99" value="0">
                         <span class="custom-time-separator">:</span>
@@ -52,15 +52,15 @@
                         <input class="custom-time-input" type="number" id="seconds" min="0" max="59" value="0">
                     </div>
                     <div class="input-label-custom">
-                        <label for="hours">Hour</label>
+                        <label class="little-left" for="hours">Hour</label>
                         <label for="minutes">Minute</label>
                         <label for="seconds">Second</label>
                     </div>
                 </div>
             </div>
             <div class="custom-increment-field">
-                <h6>Increment</h6>
-                <div>
+                <h6>Increment:</h6>
+                <div class="top">
                     <div class="pick-time2 right">
                         <input class="custom-increment-input" type="number" id="hours2" min="0" max="99" value="0">
                         <span class="custom-time-separator">:</span>
@@ -69,9 +69,9 @@
                         <input class="custom-increment-input" type="number" id="seconds2" min="0" max="59" value="0">
                     </div>
                     <div class="input-label-custom">
-                        <label for="hours2">Hour</label>
-                        <label for="minutes2">Minute</label>
-                        <label for="seconds2">Second</label>
+                        <label class="little-right" for="hours2">Hour</label>
+                        <label class="little-right" for="minutes2">Minute</label>
+                        <label class="little-right" for="seconds2">Second</label>
                     </div>
                 </div>
             </div>

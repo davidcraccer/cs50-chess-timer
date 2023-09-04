@@ -1,4 +1,6 @@
 // Get references to various HTML elements using their IDs and classes.
+import Clock from '/Clock.js';
+
 const timerSettingBtn = document.getElementById("change-time");
 const timerSettingBtn2 = document.getElementById("sec-change-time");
 const timerSetting = document.querySelector(".adjust-time");
@@ -114,30 +116,30 @@ function updateClock(hours, minutes, seconds, clockElement) {
   clockElement.textContent = formattedTime;
 }
 
-function startTimer(hours, minutes, seconds, clockElement) {
-  let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+// function startTimer(hours, minutes, seconds, clockElement) {
+//   let totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
-  const timerInterval = setInterval(() => {
-    if (totalSeconds <= 0) {
-      clearInterval(timerInterval);
-      console.log("Timer expired");
-    } else {
-      const hoursRemaining = Math.floor(totalSeconds / 3600);
-      const minutesRemaining = Math.floor((totalSeconds % 3600) / 60);
-      const secondsRemaining = totalSeconds % 60;
+//   const timerInterval = setInterval(() => {
+//     if (totalSeconds <= 0) {
+//       clearInterval(timerInterval);
+//       console.log("Timer expired");
+//     } else {
+//       const hoursRemaining = Math.floor(totalSeconds / 3600);
+//       const minutesRemaining = Math.floor((totalSeconds % 3600) / 60);
+//       const secondsRemaining = totalSeconds % 60;
 
-      // Update the clock display with the formatted time
-      updateClock(
-        hoursRemaining,
-        minutesRemaining,
-        secondsRemaining,
-        clockElement
-      );
+//       // Update the clock display with the formatted time
+//       updateClock(
+//         hoursRemaining,
+//         minutesRemaining,
+//         secondsRemaining,
+//         clockElement
+//       );
 
-      totalSeconds--;
-    }
-  }, 1000);
-}
+//       totalSeconds--;
+//     }
+//   }, 1000);
+// }
 
 const volumeBtn = document.getElementById("volume-btn");
 const spanVolumeOn = document.getElementById("volume-on");
@@ -156,23 +158,29 @@ function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time" && firstPlayerTurn) {
     isGameOn = true;
-    moveCounter1++;
     firstPlayerTurn = !firstPlayerTurn;
+    
+
+    if (startGameMoveCounter >= 1) {
+      moveCounter1++;
+    }
 
     if (startGameMoveCounter < 2) {
       startGameMoveCounter++;
       // Clock Information
-      const firstClock = document.getElementById("clock");
+      const secondClock = document.getElementById("clock2");
 
-      const hoursInput = parseInt(document.getElementById("hours").value, 10);
-      const minutesInput =
-        parseInt(document.getElementById("minutes").value, 10) || 10;
-      const secondsInput = parseInt(
-        document.getElementById("seconds").value,
+      const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
+      const minutesInput2 =
+        parseInt(document.getElementById("minutes2").value, 10) || 10;
+      const secondsInput2 = parseInt(
+        document.getElementById("seconds2").value,
         10
       );
       // Start the timer with the provided input values
-      startTimer(hoursInput, minutesInput, secondsInput, firstClock);
+      const clock = new Clock(hoursInput2, minutesInput2, secondsInput2, secondClock)
+      clock.start()
+      
     }
 
     document.getElementById("move-counter-1").textContent = moveCounter1;
@@ -201,18 +209,19 @@ function secondTapClickHandler(e) {
     if (startGameMoveCounter < 2) {
       startGameMoveCounter++;
       // Clock Information
-      const secondClock = document.getElementById("clock2");
+      const firstClock = document.getElementById("clock");
 
-      const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
-      const minutesInput2 =
-        parseInt(document.getElementById("minutes2").value, 10) || 10;
-      const secondsInput2 = parseInt(
-        document.getElementById("seconds2").value,
+      const hoursInput = parseInt(document.getElementById("hours").value, 10);
+      const minutesInput =
+        parseInt(document.getElementById("minutes").value, 10) || 10;
+      const secondsInput = parseInt(
+        document.getElementById("seconds").value,
         10
       );
 
       // Start the timer with the provided input values
-      startTimer(hoursInput2, minutesInput2, secondsInput2, secondClock);
+      const clock = new Clock(hoursInput, minutesInput, secondsInput, firstClock)
+      clock.start()
     }
 
     document.getElementById("move-counter-2").textContent = moveCounter2;

@@ -212,8 +212,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .title-back p {
-  color: #bebebe;
+  color: whitesmoke;
   margin-bottom: 0;
+}
+
+.white-smoke{
+  color: whitesmoke;
 }
 
 .custom-time {
@@ -273,17 +277,17 @@ label {
   color: white;
 }
 
-input[type="radio"] {
+.radio-options input {
   display: none;
 }
 
-input[type="radio"] + label {
+.radio-options input + label {
   position: relative;
   padding-left: 16em;
   cursor: pointer;
 }
 
-input[type="radio"] + label::before {
+.radio-options input + label::before {
   content: "";
   position: absolute;
   left: 6em;
@@ -318,6 +322,16 @@ input[type="radio"]:checked + label::before {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.custom-time-field{
+  border-bottom: 2px solid #696969;
+  padding-bottom: 10px;
+}
+
+.top{
+  margin-top: 13px;
 }
 
 .custom-time-field h6{
@@ -332,6 +346,7 @@ input[type="radio"]:checked + label::before {
   width: 35px !important;
   height: 35px !important ;
   margin: 0 !important;
+  font-size: 1.5rem !important;
 }
 
 .custom-time-input, .custom-increment-input{
@@ -349,7 +364,7 @@ input[type="radio"]:checked + label::before {
 }
 
 .input-label-custom label {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   color: #86837e;
 }
 
@@ -360,4 +375,32 @@ input[type="radio"]:checked + label::before {
 
 .right{
   margin-right: 11px;
+}
+
+.little-right{
+  margin-right: 3px;
+}
+
+.little-left{
+  margin-left: 8px;
+}
+
+/* Theme color */
+
+.color-theme{
+  width: 250px;
+  height: 120px;
+  background-color: #696969;
+  border-radius: 5px;
+  position: absolute;
+  top: 150px;
+  left: 31vw;
+  box-shadow: 0 0 20px black;
+}
+
+.small-title-color {
+  font-size: 0.7rem;
+  margin: 0;
+  color: whitesmoke;
+  margin-top: 10px;
 }
