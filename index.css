@@ -25,6 +25,7 @@
 
 /* Layout */
 body {
+  height: 100vh;
   background-color: whitesmoke;
   position: relative;
 }
@@ -100,6 +101,7 @@ button {
   display: flex;
   justify-content: start;
   align-items: center;
+  border-bottom: 1px solid #696969;
 }
 
 .small {
@@ -302,6 +304,85 @@ input[type="radio"]:checked + label::before {
   background-color: #7fa54e;
 }
 
+/* Theme color */
+
+.color-theme{
+  width: 250px;
+  height: 150px;
+  background-color: #696969;
+  border-radius: 5px;
+  position: absolute;
+  top: 150px;
+  left: 31vw;
+  box-shadow: 0 0 20px black;
+}
+
+.small-title-color {
+  font-size: 0.7rem;
+  margin: 0;
+  color: whitesmoke;
+  margin-top: 10px;
+}
+
+.color-choice{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1em 0.5em;
+}
+
+.form-check-input{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+ background-color: #585451;
+}
+
+.green{
+  background-color: #0680BB;
+  border: none;
+}
+.blue{
+  background-color: #7FA44F;
+  border: none;
+}
+.orange{
+  background-color: #C0A35A;
+  border: none;
+}
+.light-blue{
+  background-color: #F28275;
+  border: none;
+}
+.yellow{
+  background-color: #1CAFA7;
+  border: none;
+}
+.red{
+  background-color: #E58F2A;
+  border: none;
+}
+
+.title-timer2{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom: 1px solid #585451;
+  
+}
+
+.color-theme button{
+  width: 60px;
+  height: 30px;
+  margin: 0 auto;
+  font-size: small;
+  padding: 0;
+  margin-left: 7.4em;
+}
+
 /* custom time */
 
 .custom-time-name{
@@ -387,20 +468,3 @@ input[type="radio"]:checked + label::before {
 
 /* Theme color */
 
-.color-theme{
-  width: 250px;
-  height: 120px;
-  background-color: #696969;
-  border-radius: 5px;
-  position: absolute;
-  top: 150px;
-  left: 31vw;
-  box-shadow: 0 0 20px black;
-}
-
-.small-title-color {
-  font-size: 0.7rem;
-  margin: 0;
-  color: whitesmoke;
-  margin-top: 10px;
-}

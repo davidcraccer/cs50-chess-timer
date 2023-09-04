@@ -42,7 +42,7 @@
                 </span>
             </button>
             
-            <button id="setting-btn" class="mx-3">
+            <button id="palette-btn" class="mx-3">
                 <span class="material-symbols-outlined">
                     palette
                 </span>
@@ -91,23 +91,24 @@
         </div>
     </main>
 
-    <div class="color-theme">
-        <div class="title-timer">
+    <div class="color-theme hidden">
+        <div class="title-timer2">
             <span class="material-symbols-outlined small white-smoke">
                 brush
             </span>
             <p class="small-title-color">Theme color</p>
         </div>  
-        <div>
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
-            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+        <div class="color-choice">
+            <input class="form-check-input green" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            <input class="form-check-input blue" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            <input class="form-check-input orange" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            <input class="form-check-input light-blue" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            <input class="form-check-input yellow" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            <input class="form-check-input red" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
         </div>
+        <button id="save-color" class="start-btn">Save</button>
     </div>
     
-    
 </body>
+<script type="module" src="timecontrol.js"></script>
 </html>
