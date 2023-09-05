@@ -6,7 +6,7 @@ const timerSettingBtn2 = document.getElementById("sec-change-time");
 const timerSetting = document.querySelector(".adjust-time");
 const timerSetting2 = document.querySelector(".adjust-time2");
 const buttons = document.querySelectorAll("button");
-const clickSound = document.getElementById("click-sound")
+const clickSound = document.getElementById("click-sound");
 
 let isGameOn = false;
 let disableGame = false;
@@ -17,7 +17,6 @@ let moveCounter2 = 0;
 let startGameMoveCounter = 0;
 
 // TODO: create new two clocks here and update its values when clicked on the first time
-// TODO: for seconds to only be shown when theres only seconds
 // let clock1, clock2;
 
 // Execute code when the DOM is fully loaded.
@@ -109,7 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to update the clock display with formatted time.
 function updateClock(hours, minutes, seconds, clockElement) {
   let formattedTime;
-  if (hours == 0) {
+  if (hours == 0 && minutes == 0) {
+    formattedTime = `${String(seconds)}s`;
+  } else if (hours == 0) {
     formattedTime = `${String(minutes).padStart(2, "0")}:${String(
       seconds
     ).padStart(2, "0")}`;
@@ -156,8 +157,7 @@ volumeBtn.addEventListener("click", () => {
   spanVolumeOff.hidden = !spanVolumeOff.hidden;
 });
 
-function startGame() {
-}
+function startGame() {}
 const secondClock = document.getElementById("clock2");
 
 const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
@@ -165,7 +165,12 @@ const minutesInput2 =
   parseInt(document.getElementById("minutes2").value, 10) || 10;
 const secondsInput2 = parseInt(document.getElementById("seconds2").value, 10);
 // Start the timer with the provided input values
-const clock2 = new Clock(hoursInput2, minutesInput2, secondsInput2, secondClock);
+const clock2 = new Clock(
+  hoursInput2,
+  minutesInput2,
+  secondsInput2,
+  secondClock
+);
 const firstClock = document.getElementById("clock");
 
 const hoursInput = parseInt(document.getElementById("hours").value, 10);
@@ -181,11 +186,12 @@ function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time" && firstPlayerTurn) {
     isGameOn = true;
-    clickSound.play()
-    document.querySelector(".second-tapping-field").style.backgroundColor = "#7FA44F"
-    secondClock.style.color = "white"
-    firstClock.style.color = "#323232"
-    document.querySelector(".first-tapping-field").style.backgroundColor = ""
+    clickSound.play();
+    document.querySelector(".second-tapping-field").style.backgroundColor =
+      "#7FA44F";
+    secondClock.style.color = "white";
+    firstClock.style.color = "#323232";
+    document.querySelector(".first-tapping-field").style.backgroundColor = "";
     firstPlayerTurn = !firstPlayerTurn;
 
     if (startGameMoveCounter >= 1) {
@@ -232,11 +238,12 @@ function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time" && !firstPlayerTurn) {
     isGameOn = true;
-    clickSound.play()
-    document.querySelector(".first-tapping-field").style.backgroundColor = "#7FA44F"
-    firstClock.style.color = "white"
-    secondClock.style.color = "#323232"
-    document.querySelector(".second-tapping-field").style.backgroundColor = ""
+    clickSound.play();
+    document.querySelector(".first-tapping-field").style.backgroundColor =
+      "#7FA44F";
+    firstClock.style.color = "white";
+    secondClock.style.color = "#323232";
+    document.querySelector(".second-tapping-field").style.backgroundColor = "";
     moveCounter2++;
     firstPlayerTurn = !firstPlayerTurn;
     if (startGameMoveCounter < 2) {
@@ -299,5 +306,3 @@ timerSettingBtn2.addEventListener("click", () => {
     }
   });
 });
-
-
