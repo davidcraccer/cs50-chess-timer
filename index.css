@@ -140,6 +140,7 @@ button {
   color: white;
   font-size: 1.8rem;
   margin-top: 20px;
+  border-radius: 5px;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -417,10 +418,12 @@ input[type="radio"]:checked + label::before {
 
 .custom-time-field h6{
   margin-right: 3em;
+  margin-left: 0.4em;
 }
 
 .custom-increment-field h6{
   margin-right: 3.4em;
+  margin-left: 0.4em;
 }
 
 .custom-time-input, .custom-increment-input{
@@ -434,6 +437,7 @@ input[type="radio"]:checked + label::before {
   width: 35px !important;
   height: 35px !important ;
   margin: 0 !important;
+  border-radius: 3px !important;
 }
 
 .custom-time-separator{
@@ -466,5 +470,4 @@ input[type="radio"]:checked + label::before {
   margin-left: 8px;
 }
 
-/* Theme color */
 
