@@ -6,6 +6,7 @@ const timerSettingBtn2 = document.getElementById("sec-change-time");
 const timerSetting = document.querySelector(".adjust-time");
 const timerSetting2 = document.querySelector(".adjust-time2");
 const buttons = document.querySelectorAll("button");
+const clickSound = document.getElementById("click-sound")
 
 let isGameOn = false;
 let disableGame = false;
@@ -180,6 +181,11 @@ function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time" && firstPlayerTurn) {
     isGameOn = true;
+    clickSound.play()
+    document.querySelector(".second-tapping-field").style.backgroundColor = "#7FA44F"
+    secondClock.style.color = "white"
+    firstClock.style.color = "#323232"
+    document.querySelector(".first-tapping-field").style.backgroundColor = ""
     firstPlayerTurn = !firstPlayerTurn;
 
     if (startGameMoveCounter >= 1) {
@@ -226,6 +232,11 @@ function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time" && !firstPlayerTurn) {
     isGameOn = true;
+    clickSound.play()
+    document.querySelector(".first-tapping-field").style.backgroundColor = "#7FA44F"
+    firstClock.style.color = "white"
+    secondClock.style.color = "#323232"
+    document.querySelector(".second-tapping-field").style.backgroundColor = ""
     moveCounter2++;
     firstPlayerTurn = !firstPlayerTurn;
     if (startGameMoveCounter < 2) {
