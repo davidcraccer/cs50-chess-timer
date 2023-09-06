@@ -1,6 +1,8 @@
 // Get references to various HTML elements using their IDs and classes.
 import Clock from "/Clock.js";
+import getSelectedColor from "/timecontrol.js"
 
+let selectedColor = getSelectedColor()
 const timerSetting = document.querySelector(".adjust-time");
 const timerSetting2 = document.querySelector(".adjust-time2");
 const timerSettingBtn = document.getElementById("change-time");
@@ -135,7 +137,7 @@ function firstTapClickHandler(e) {
 
     // Change the color of the field
     document.querySelector(".second-tapping-field").style.backgroundColor =
-      "#7FA44F";
+      selectedColor;
     secondClock.style.color = "white";
     firstClock.style.color = "#323232";
     document.querySelector(".first-tapping-field").style.backgroundColor = "";
@@ -190,7 +192,7 @@ function secondTapClickHandler(e) {
 
     // update the field
     document.querySelector(".first-tapping-field").style.backgroundColor =
-      "#7FA44F";
+      selectedColor;
     firstClock.style.color = "white";
     secondClock.style.color = "#323232";
     document.querySelector(".second-tapping-field").style.backgroundColor = "";
