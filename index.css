@@ -342,27 +342,27 @@ input[type="radio"]:checked + label::before {
  background-color: #585451;
 }
 
-.green{
+.blue{
   background-color: #0680BB;
   border: none;
 }
-.blue{
+.green{
   background-color: #7FA44F;
   border: none;
 }
-.orange{
+.yellow{
   background-color: #C0A35A;
   border: none;
 }
-.light-blue{
+.red{
   background-color: #F28275;
   border: none;
 }
-.yellow{
+.light-blue{
   background-color: #1CAFA7;
   border: none;
 }
-.red{
+.orange{
   background-color: #E58F2A;
   border: none;
 }
