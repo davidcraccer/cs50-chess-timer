@@ -124,38 +124,7 @@ document.getElementById("play-btn").addEventListener("click", (e) => {
   firstTapClickHandler(e);
 });
 
-// Toggle volume on and off
-spanVolumeOn.addEventListener("click", () => {
-  clickSound.volume = 0
-})
-spanVolumeOff.addEventListener("click", () => {
-  clickSound.volume = 1
-})
-
-// Start game
-document.getElementById("play-btn").addEventListener("click", e =>{
-  firstTapClickHandler(e)
-})
-
-function startGame() {
-}
-const secondClock = document.getElementById("clock2");
-
-const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
-const minutesInput2 =
-  parseInt(document.getElementById("minutes2").value, 10) || 10;
-const secondsInput2 = parseInt(document.getElementById("seconds2").value, 10);
-// Start the timer with the provided input values
-const clock2 = new Clock(hoursInput2, minutesInput2, secondsInput2, secondClock);
-const firstClock = document.getElementById("clock");
-
-const hoursInput = parseInt(document.getElementById("hours").value, 10);
-const minutesInput =
-  parseInt(document.getElementById("minutes").value, 10) || 10;
-const secondsInput = parseInt(document.getElementById("seconds").value, 10);
-
-// Start the timer with the provided input values
-const clock1 = new Clock(hoursInput, minutesInput, secondsInput, firstClock);
+function startGame() {}
 
 // Define the event listener function for "first-tap."
 function firstTapClickHandler(e) {
