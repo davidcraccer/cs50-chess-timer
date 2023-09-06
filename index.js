@@ -1,6 +1,6 @@
 // Get references to various HTML elements using their IDs and classes.
 import Clock from "/Clock.js";
-import getSelectedColor from "/timecontrol.js"
+import { getSelectedColor } from "/timecontrol.js"
 
 let selectedColor = getSelectedColor()
 const timerSetting = document.querySelector(".adjust-time");
