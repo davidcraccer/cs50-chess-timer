@@ -38,7 +38,12 @@ class Clock {
 
   updateClock(hours, minutes, seconds) {
     let formattedTime;
-    if (hours == 0 && minutes == 0) {
+    if (hours == 0 && minutes == 0 && seconds == 0) {
+      minutes = 10;
+      formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+        seconds
+      ).padStart(2, "0")}`;
+    } else if (hours == 0 && minutes == 0) {
       formattedTime = `${String(seconds)}s`;
     } else if (hours == 0) {
       formattedTime = `${String(minutes).padStart(2, "0")}:${String(
