@@ -1,8 +1,8 @@
 // Get references to various HTML elements using their IDs and classes.
 import Clock from "/Clock.js";
-import { getSelectedColor } from "/timecontrol.js"
+import { getSelectedColor } from "/timecontrol.js";
 
-let selectedColor = getSelectedColor()
+const selectedColor = getSelectedColor();
 const timerSetting = document.querySelector(".adjust-time");
 const timerSetting2 = document.querySelector(".adjust-time2");
 const timerSettingBtn = document.getElementById("change-time");
@@ -18,6 +18,10 @@ let clock2 = new Clock(0, 10, 0, secondClock);
 const firstClock = document.getElementById("clock");
 let clock1 = new Clock(0, 10, 0, firstClock);
 
+// TODO: store color in localStorage
+// TODO: Disable start button when played
+// TODO: Make second player be able to start as well
+
 let isGameOn = false;
 let disableGame = false;
 
@@ -28,20 +32,14 @@ let startGameMoveCounter = 0;
 
 // Execute code when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", () => {
-    if (disableGame == false) {
-      isGameOn = true;
-      startGame();
-    }
-  });
-  // Add click event listeners to elements with class "first-tap" and "second-tap."
-  document
-    .querySelector(".first-tapping-field")
-    .addEventListener("click", firstTapClickHandler);
-  document
-    .querySelector(".second-tapping-field")
-    .addEventListener("click", secondTapClickHandler);
+  // document.addEventListener("click", () => {
+  //   if (disableGame == false) {
+  //     isGameOn = true;
+  //   }
+  // });
 
+  // Add click event listeners to game fields"
+  addPlayingEventListener();
   initializeTimerEvents(
     clock1,
     "cancel",
@@ -75,10 +73,10 @@ function initializeTimerEvents(
   const saveBtn = document.getElementById(save);
   // Add event listeners for the "cancel" and "save" buttons for the first timer.
   cancelBtn.addEventListener("click", () => {
-    console.log("cancel");
     timerSetting.classList.add("hidden");
     document.body.style.backgroundColor = "";
     disableGame = true;
+    addPlayingEventListener();
     buttons.forEach((button) => {
       button.disabled = false;
     });
@@ -93,7 +91,7 @@ function initializeTimerEvents(
     timerSetting.classList.add("hidden");
     document.body.style.backgroundColor = "";
     disableGame = true;
-
+    addPlayingEventListener();
     buttons.forEach((button) => {
       button.disabled = false;
     });
@@ -120,7 +118,6 @@ function toggleVolume() {
 // Toggle the volume icon and volume control
 volumeBtn.addEventListener("click", toggleVolume);
 
-
 // Start game
 document.getElementById("play-btn").addEventListener("click", (e) => {
   firstTapClickHandler(e);
@@ -133,7 +130,7 @@ function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time" && firstPlayerTurn) {
     isGameOn = true;
-    clickSound.play();
+    //clickSound.play();
 
     // Change the color of the field
     document.querySelector(".second-tapping-field").style.backgroundColor =
@@ -144,31 +141,36 @@ function firstTapClickHandler(e) {
 
     firstPlayerTurn = !firstPlayerTurn;
 
-    const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
-    let minutesInput2 = parseInt(document.getElementById("minutes2").value, 10);
-    const secondsInput2 = parseInt(
-      document.getElementById("seconds2").value,
-      10
-    );
-
-    if (hoursInput2 === 0 && minutesInput2 === 0 && secondsInput2 === 0) {
-      minutesInput2 = 10;
-    }
-    clock2.setClock(hoursInput2, minutesInput2, secondsInput2);
-
     // Stops the incrementation of the first field tapped
     if (startGameMoveCounter >= 1) {
       moveCounter1++;
     }
 
+    // initializes second clock
     if (startGameMoveCounter < 2) {
       startGameMoveCounter++;
-    }
-    clock1.stop();
-    clock2.start();
+      const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
+      let minutesInput2 = parseInt(
+        document.getElementById("minutes2").value,
+        10
+      );
+      const secondsInput2 = parseInt(
+        document.getElementById("seconds2").value,
+        10
+      );
 
+      if (hoursInput2 === 0 && minutesInput2 === 0 && secondsInput2 === 0) {
+        minutesInput2 = 10;
+      }
+
+      clock2.setClock(hoursInput2, minutesInput2, secondsInput2);
+      hidePlayersSettings();
+    }
+
+    // Increments the Move Counter
     document.getElementById("move-counter-1").textContent = moveCounter1;
 
+    // Add the click second event and removes the first click event
     document
       .querySelector(".first-tapping-field")
       .removeEventListener("click", firstTapClickHandler);
@@ -176,10 +178,8 @@ function firstTapClickHandler(e) {
       .querySelector(".second-tapping-field")
       .addEventListener("click", secondTapClickHandler);
 
-    // Hide elements with class "hide."
-    document.querySelectorAll(".hide").forEach((element) => {
-      element.classList.add("hidden");
-    });
+    clock1.stop();
+    clock2.start();
   }
 }
 
@@ -188,7 +188,7 @@ function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time" && !firstPlayerTurn) {
     isGameOn = true;
-    clickSound.play();
+    //clickSound.play();
 
     // update the field
     document.querySelector(".first-tapping-field").style.backgroundColor =
@@ -197,37 +197,48 @@ function secondTapClickHandler(e) {
     secondClock.style.color = "#323232";
     document.querySelector(".second-tapping-field").style.backgroundColor = "";
 
-    const hoursInput = parseInt(document.getElementById("hours").value, 10);
-    let minutesInput = parseInt(document.getElementById("minutes").value, 10);
-    const secondsInput = parseInt(document.getElementById("seconds").value, 10);
-
-    if (hoursInput === 0 && minutesInput === 0 && secondsInput === 0) {
-      minutesInput = 10;
-    }
-
-    clock1.setClock(hoursInput, minutesInput, secondsInput);
-
     moveCounter2++;
     firstPlayerTurn = !firstPlayerTurn;
+
+    // initializes the first clock
     if (startGameMoveCounter < 2) {
       startGameMoveCounter++;
-    }
-    clock2.stop();
-    clock1.start();
+      const hoursInput = parseInt(document.getElementById("hours").value, 10);
+      let minutesInput = parseInt(document.getElementById("minutes").value, 10);
+      const secondsInput = parseInt(
+        document.getElementById("seconds").value,
+        10
+      );
 
+      if (hoursInput === 0 && minutesInput === 0 && secondsInput === 0) {
+        minutesInput = 10;
+      }
+
+      clock1.setClock(hoursInput, minutesInput, secondsInput);
+      hidePlayersSettings();
+    }
+
+    // Increments the Move Counter
     document.getElementById("move-counter-2").textContent = moveCounter2;
 
+    // Add the click first event and removes the second event
     document
       .querySelector(".second-tapping-field")
       .removeEventListener("click", secondTapClickHandler);
     document
       .querySelector(".first-tapping-field")
       .addEventListener("click", firstTapClickHandler);
-    // Hide elements with class "hide."
-    document.querySelectorAll(".hide").forEach((element) => {
-      element.classList.add("hidden");
-    });
+
+    clock2.stop();
+    clock1.start();
   }
+}
+
+function hidePlayersSettings() {
+  // Hide elements with class "hide."
+  document.querySelectorAll(".hide").forEach((element) => {
+    element.classList.add("hidden");
+  });
 }
 
 // Add a click event listener to the first timer button.
@@ -248,6 +259,7 @@ timerSettingBtn.addEventListener("click", () => {
       button.disabled = true;
     }
   });
+  removePlayingEventListener();
 });
 
 // Add a click event listener to the second timer button (similar to the first timer).
@@ -266,4 +278,23 @@ timerSettingBtn2.addEventListener("click", () => {
       button.disabled = true;
     }
   });
+  removePlayingEventListener();
 });
+
+function addPlayingEventListener() {
+  document
+    .querySelector(".first-tapping-field")
+    .addEventListener("click", firstTapClickHandler);
+  document
+    .querySelector(".second-tapping-field")
+    .addEventListener("click", secondTapClickHandler);
+}
+
+function removePlayingEventListener() {
+  document
+    .querySelector(".first-tapping-field")
+    .removeEventListener("click", firstTapClickHandler);
+  document
+    .querySelector(".second-tapping-field")
+    .remoceEventListener("click", secondTapClickHandler);
+}
