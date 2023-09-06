@@ -156,6 +156,19 @@ volumeBtn.addEventListener("click", () => {
   spanVolumeOff.hidden = !spanVolumeOff.hidden;
 });
 
+// Toggle volume on and off
+spanVolumeOn.addEventListener("click", () => {
+  clickSound.volume = 0
+})
+spanVolumeOff.addEventListener("click", () => {
+  clickSound.volume = 1
+})
+
+// Start game
+document.getElementById("play-btn").addEventListener("click", e =>{
+  firstTapClickHandler(e)
+})
+
 function startGame() {
 }
 const secondClock = document.getElementById("clock2");
