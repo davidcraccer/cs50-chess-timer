@@ -3,6 +3,7 @@ class Clock {
     this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.clockElement = clockElement;
     this.timerInterval = null;
+    this.lose = false
   }
 
   start() {
@@ -10,6 +11,7 @@ class Clock {
       this.timerInterval = setInterval(() => {
         if (this.totalSeconds < 0) {
           this.stop();
+          this.lose = true;
           console.log("Timer expired");
         } else {
           const hoursRemaining = Math.floor(this.totalSeconds / 3600);
