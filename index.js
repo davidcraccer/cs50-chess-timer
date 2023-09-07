@@ -1,11 +1,9 @@
 // Get references to various HTML elements using their IDs and classes.
 import Clock from "/Clock.js";
-import { getSelectedColor } from "/timecontrol.js";
 import initializeTimer from "./buttons/initializeTimerBtns.js";
 import hidePlayersSettings from "./utils/hidePlayerSetting.js";
 import { addPlayingEventListener } from "../utils/playerClickHandlers.js";
 
-const selectedColor = getSelectedColor();
 const getQS = (id) => document.querySelector(id);
 
 // Initialize Clocks
@@ -17,8 +15,8 @@ let clock1 = new Clock(0, 0, 0, firstClock);
 /**
  * READ MEEEEEEEE
  *
- * TODO: store color in localStorage
- * store the color in local storage in timecontrol.js
+ * !DONE store color in localStorage
+ * store the color in local storage in timecontrol.js 
  * retrieve the color from localStorage here in index.js
  * if the theres no value / cant retrieve then return a default value
  * {"color": "black"} || {"r": 0, "g": 0, "b": 0}
@@ -37,6 +35,9 @@ let isGameOn = false;
 let firstPlayerTurn = true;
 let moveCounter1 = 0;
 let moveCounter2 = 0;
+
+// Retrieve selected color
+let selectedColor = localStorage.getItem("selectedColor") ? localStorage.getItem("selectedColor") : "#7FA44F";
 
 // Execute code when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
@@ -197,3 +198,5 @@ timerSettingBtn.addEventListener("click", () => {
 timerSettingBtn2.addEventListener("click", () => {
   openTimerSetting(".adjust-time2");
 });
+
+localStorage.clear()
