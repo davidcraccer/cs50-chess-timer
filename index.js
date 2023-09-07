@@ -125,7 +125,7 @@ document.getElementById("play-btn").addEventListener("click", (e) => {
 
 function startGame() {}
 
-// Define the event listener function for "first-tap."
+// First player field"
 function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time" && firstPlayerTurn) {
@@ -180,10 +180,13 @@ function firstTapClickHandler(e) {
 
     clock1.stop();
     clock2.start();
+    if (clock2.totalSeconds <= 0){
+      clock2.lose("second-tapping-field")
+    }
   }
 }
 
-// Define the event listener function for "second-tap."
+// Second player field"
 function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time" && !firstPlayerTurn) {
@@ -230,6 +233,9 @@ function secondTapClickHandler(e) {
       .addEventListener("click", firstTapClickHandler);
 
     clock2.stop();
+    if (clock1.totalSeconds <= 0){
+      clock1.lose("first-tapping-field")
+    }
     clock1.start();
   }
 }
@@ -296,5 +302,5 @@ function removePlayingEventListener() {
     .removeEventListener("click", firstTapClickHandler);
   document
     .querySelector(".second-tapping-field")
-    .remoceEventListener("click", secondTapClickHandler);
+    .removeEventListener("click", secondTapClickHandler);
 }

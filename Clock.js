@@ -8,7 +8,7 @@ class Clock {
   start() {
     if (!this.timerInterval) {
       this.timerInterval = setInterval(() => {
-        if (this.totalSeconds <= 0) {
+        if (this.totalSeconds < 0) {
           this.stop();
           console.log("Timer expired");
         } else {
@@ -39,10 +39,7 @@ class Clock {
   updateClock(hours, minutes, seconds) {
     let formattedTime;
     if (hours == 0 && minutes == 0 && seconds == 0) {
-      minutes = 10;
-      formattedTime = `${String(minutes).padStart(2, "0")}:${String(
-        seconds
-      ).padStart(2, "0")}`;
+      formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`
     } else if (hours == 0 && minutes == 0) {
       formattedTime = `${String(seconds)}s`;
     } else if (hours == 0) {
@@ -54,7 +51,7 @@ class Clock {
         minutes
       ).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     }
-    this.clockElement.textContent = formattedTime;
+    this.clockElement.innerHTML = formattedTime;
   }
 }
 export default Clock;
