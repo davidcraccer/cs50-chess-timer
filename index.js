@@ -3,19 +3,15 @@ import Clock from "/Clock.js";
 import { getSelectedColor } from "/timecontrol.js";
 
 const selectedColor = getSelectedColor();
-const timerSetting = document.querySelector(".adjust-time");
-const timerSetting2 = document.querySelector(".adjust-time2");
-const timerSettingBtn = document.getElementById("change-time");
-const timerSettingBtn2 = document.getElementById("sec-change-time");
+const getQS = id => document.querySelector(id);
 const buttons = document.querySelectorAll("button");
-// Anchor tags cant be disabled with disabled = true
 const anchors = document.querySelectorAll("a");
-const clickSound = document.getElementById("click-sound");
+const clickSound = getQS("#click-sound");
 
 // Clocks setted with the default values
-const secondClock = document.getElementById("clock2");
+const secondClock = getQS("#clock2");
 let clock2 = new Clock(0, 10, 0, secondClock);
-const firstClock = document.getElementById("clock");
+const firstClock = getQS("#clock");
 let clock1 = new Clock(0, 10, 0, firstClock);
 
 /**
@@ -110,9 +106,9 @@ function initializeTimerEvents(
   saveBtn.addEventListener("click", saveTimerSetting);
 }
 
-const volumeBtn = document.getElementById("volume-btn");
-const spanVolumeOn = document.getElementById("volume-on");
-const spanVolumeOff = document.getElementById("volume-off");
+const volumeBtn = getQS("#volume-btn");
+const spanVolumeOn = getQS("#volume-on");
+const spanVolumeOff = getQS("#volume-off");
 // Track sound state
 let isVolumeOn = true;
 
@@ -128,7 +124,7 @@ function toggleVolume() {
 volumeBtn.addEventListener("click", toggleVolume);
 
 // Start game
-document.getElementById("play-btn").addEventListener("click", (e) => {
+getQS("#play-btn").addEventListener("click", (e) => {
   firstTapClickHandler(e);
 });
 
@@ -142,11 +138,11 @@ function firstTapClickHandler(e) {
     //clickSound.play();
 
     // Change the color of the field
-    document.querySelector(".second-tapping-field").style.backgroundColor =
+    getQS(".second-tapping-field").style.backgroundColor =
       selectedColor;
     secondClock.style.color = "white";
     firstClock.style.color = "#323232";
-    document.querySelector(".first-tapping-field").style.backgroundColor = "";
+    getQS(".first-tapping-field").style.backgroundColor = "";
 
     // Stops the incrementation of the first field tapped
     if (!firstPlayerTurn) {
@@ -157,13 +153,13 @@ function firstTapClickHandler(e) {
 
     // initializes second clock
     if (moveCounter1 + moveCounter2 < 2) {
-      const hoursInput2 = parseInt(document.getElementById("hours2").value, 10);
+      const hoursInput2 = parseInt(getQS("#hours2").value, 10);
       let minutesInput2 = parseInt(
-        document.getElementById("minutes2").value,
+        getQS("#minutes2").value,
         10
       );
       const secondsInput2 = parseInt(
-        document.getElementById("seconds2").value,
+        getQS("#seconds2").value,
         10
       );
 
@@ -174,11 +170,11 @@ function firstTapClickHandler(e) {
       clock2.setClock(hoursInput2, minutesInput2, secondsInput2);
       hidePlayersSettings();
 
-      document.querySelector("#play-btn").disabled = true;
+      getQS("#play-btn").disabled = true;
     }
 
     // Increments the Move Counter
-    document.getElementById("move-counter-1").textContent = moveCounter1;
+    getQS("#move-counter-1").textContent = moveCounter1;
 
     // Add the click second event and removes the first click event
     document
@@ -201,11 +197,11 @@ function secondTapClickHandler(e) {
     //clickSound.play();
 
     // update the field
-    document.querySelector(".first-tapping-field").style.backgroundColor =
+    getQS(".first-tapping-field").style.backgroundColor =
       selectedColor;
     firstClock.style.color = "white";
     secondClock.style.color = "#323232";
-    document.querySelector(".second-tapping-field").style.backgroundColor = "";
+    getQS(".second-tapping-field").style.backgroundColor = "";
 
     // Stops the incrementation of the first tapped
     if (!firstPlayerTurn) {
@@ -216,10 +212,10 @@ function secondTapClickHandler(e) {
 
     // initializes the first clock
     if (moveCounter1 + moveCounter2 < 2) {
-      const hoursInput = parseInt(document.getElementById("hours").value, 10);
-      let minutesInput = parseInt(document.getElementById("minutes").value, 10);
+      const hoursInput = parseInt(getQS("#hours").value, 10);
+      let minutesInput = parseInt(getQS("#minutes").value, 10);
       const secondsInput = parseInt(
-        document.getElementById("seconds").value,
+        getQS("#seconds").value,
         10
       );
 
@@ -227,14 +223,14 @@ function secondTapClickHandler(e) {
         minutesInput = 10;
       }
 
-      document.querySelector("#play-btn").disabled = true;
+      getQS("#play-btn").disabled = true;
 
       clock1.setClock(hoursInput, minutesInput, secondsInput);
       hidePlayersSettings();
     }
 
     // Increments the Move Counter
-    document.getElementById("move-counter-2").textContent = moveCounter2;
+    getQS("#move-counter-2").textContent = moveCounter2;
 
     // Add the click first event and removes the second event
     document
@@ -269,6 +265,11 @@ function openTimerSetting(timerSettingElement) {
   toggleAnchors();
   removePlayingEventListener();
 }
+
+const timerSetting = getQS(".adjust-time");
+const timerSetting2 = getQS(".adjust-time2");
+const timerSettingBtn = getQS("#change-time");
+const timerSettingBtn2 = getQS("#sec-change-time");
 
 timerSettingBtn.addEventListener("click", () => {
   openTimerSetting(timerSetting);
