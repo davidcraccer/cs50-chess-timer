@@ -30,6 +30,16 @@ let clock1 = new Clock(0, 0, 0, firstClock);
  *
  */
 
+/**
+ * TODO: min / max values are not working in fields at index.html and customtime.html
+ * ? The field at both html files are acting in different ways (For some reason)
+ * ? I could sware min and max were working perfectly fine in index.html a while ago
+* 
+ * TODO: add pop-up in customtime.html when chosen time already exists
+ * TODO: make choosing a time in customtime.html manditory
+ * 
+ */
+
 let isGameOn = false;
 
 let firstPlayerTurn = true;
@@ -37,7 +47,7 @@ let moveCounter1 = 0;
 let moveCounter2 = 0;
 
 // Retrieve selected color
-let selectedColor = localStorage.getItem("selectedColor") ? localStorage.getItem("selectedColor") : "#7FA44F";
+let selectedColor = localStorage.getItem("selectedColor") ? localStorage.getItem("selectedColor") : "#7FA44F"
 
 // Execute code when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
@@ -199,4 +209,3 @@ timerSettingBtn2.addEventListener("click", () => {
   openTimerSetting(".adjust-time2");
 });
 
-localStorage.clear()

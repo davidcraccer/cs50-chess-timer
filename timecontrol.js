@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // Show color selector pop-up
     document.getElementById("palette-btn").addEventListener("click", () =>{
         document.querySelector(".color-theme").classList.remove("hidden")
     })
 
+    // Hide color selector pop-up and add user selected color
     document.getElementById("save-color").addEventListener("click", () =>{
         document.querySelector(".color-theme").classList.add("hidden")
         const radioButtons = document.getElementsByName("radioNoLabel")
@@ -15,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.reload()
     })
 
+    // Fetch user selected color
     let selectedColor = localStorage.getItem("selectedColor")
 
     // Check if selectedColor is null and set it to the default color if it is
@@ -36,4 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Set the custom CSS variable with the value of 'selectedColor' 
     document.documentElement.style.setProperty('--selectedColor', selectedColor)
     document.documentElement.style.setProperty('--selectedColorDarker', selectedColorDarker)
+
+    // Fetch custom times
+    let customTimes = JSON.parse(localStorage.getItem("customTimes")) || []
+    
+    // Add custom time to presets
+    for (let customTime of customTimes){
+        document.querySelector(".radio-options").innerHTML += `
+            <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio">
+            <label for="${customTime.time}">${customTime.label}</label><br>
+        `
+    }
 })
