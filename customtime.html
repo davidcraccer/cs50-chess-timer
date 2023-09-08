@@ -45,11 +45,11 @@
                 <h6>Time:</h6>
                 <div class="top">
                     <div class="pick-time">
-                        <input class="custom-time-input" type="number" id="hours" min="0" max="99" value="0">
+                        <input class="custom-time-input" type="number" id="custom-hours" min=0 max=99 value=00>
                         <span class="custom-time-separator">:</span>
-                        <input class="custom-time-input" type="number" id="minutes" min="0" max="59" value="0">
+                        <input class="custom-time-input" type="number" id="custom-minutes" min=0 max=59 value=00>
                         <span class="custom-time-separator">:</span>
-                        <input class="custom-time-input" type="number" id="seconds" min="0" max="59" value="0">
+                        <input class="custom-time-input" type="number" id="custom-seconds" min=0 max=59 value=00>
                     </div>
                     <div class="input-label-custom">
                         <label class="little-left" for="hours">Hour</label>
@@ -62,11 +62,11 @@
                 <h6>Increment:</h6>
                 <div class="top">
                     <div class="pick-time2 right">
-                        <input class="custom-increment-input" type="number" id="hours2" min="0" max="99" value="0">
+                        <input class="custom-increment-input" type="number" id="increment-hours" min=0 max=99 value=00>
                         <span class="custom-time-separator">:</span>
-                        <input class="custom-increment-input" type="number" id="minutes2" min="0" max="59" value="0">
+                        <input class="custom-increment-input" type="number" id="increment-minutes" min=0 max=9 value=00>
                         <span class="custom-time-separator">:</span>
-                        <input class="custom-increment-input" type="number" id="seconds2" min="0" max="59" value="0">
+                        <input class="custom-increment-input" type="number" id="increment-seconds" min=0 max=59 value=00>
                     </div>
                     <div class="input-label-custom">
                         <label class="little-right" for="hours2">Hour</label>
@@ -75,7 +75,9 @@
                     </div>
                 </div>
             </div>
-            <button class="start-btn justtake">Save</button>
+            <a class="full-width" href="timecontrol.html">
+                <button id="save-custom-time" class="start-btn justtake">Save</button>
+            </a>
         </div>
     </main>
     <script type="module" src="customtime.js"></script>
