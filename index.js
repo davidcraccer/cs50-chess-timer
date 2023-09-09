@@ -12,34 +12,6 @@ let clock2 = new Clock(0, 0, 0, secondClock);
 const firstClock = getQS("#clock");
 let clock1 = new Clock(0, 0, 0, firstClock);
 
-/**
- * READ MEEEEEEEE
- *
- * !DONE store color in localStorage
- * store the color in local storage in timecontrol.js 
- * retrieve the color from localStorage here in index.js
- * if the theres no value / cant retrieve then return a default value
- * {"color": "black"} || {"r": 0, "g": 0, "b": 0}
- *
- * how to do this in timecontrol.js:
- * if theres nothing in localstorage then u CREATE it (a new json)
- * if theres something in localstorage then u SET it
- *
- * delete everything u imported here in index.js and retrieve the color from localStorage
- * if theres nothing then give default color here
- *
- */
-
-/**
- * TODO: min / max values are not working in fields at index.html and customtime.html
- * ? The field at both html files are acting in different ways (For some reason)
- * ? I could sware min and max were working perfectly fine in index.html a while ago
-* 
- * TODO: add pop-up in customtime.html when chosen time already exists
- * TODO: make choosing a time in customtime.html manditory
- * 
- */
-
 let isGameOn = false;
 
 let firstPlayerTurn = true;

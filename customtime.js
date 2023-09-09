@@ -22,7 +22,7 @@ document.documentElement.style.setProperty('--selectedColorDarker2', selectedCol
 document.documentElement.style.setProperty("--selectedColor2", selectedColor)
 
 // Save a Custom time  
-document.getElementById("save-custom-time").addEventListener("click", () => {
+document.getElementById("save-custom-time").addEventListener("click", e => {
     const customHours = document.getElementById("custom-hours").value
     const customMinutes = document.getElementById("custom-minutes").value
     const customSeconds = document.getElementById("custom-seconds").value
@@ -79,18 +79,30 @@ document.getElementById("save-custom-time").addEventListener("click", () => {
         time: newCustomTime
     }
 
-    let exists = false
+    let customTimeAlreadyExists = false
     // Checking if custom time already exists
     for (let i = 0; i < customTimes.length; i++){
         if(customTimeObject.time == customTimes[i].time){
-            exists = true
+            customTimeAlreadyExists = true
+            document.querySelector(".error").classList.remove("hidden")
+            document.querySelector(".error2").classList.add("hidden")
             break
         }
     }
 
-    // Add custom time if it doesn't exist
-    if (!exists){
+    let timeInputExists = true
+    // Checking if a time input is given
+    if (customHours == 0 && customMinutes == 0 &&  customSeconds == 0){
+        timeInputExists = false
+        document.querySelector(".error2").classList.remove("hidden")
+        document.querySelector(".error").classList.add("hidden")
+    }
+
+    // Add custom time if it doesn't exist, prevent default if it does
+    if (!customTimeAlreadyExists && timeInputExists){
         customTimes.push(customTimeObject)
         localStorage.setItem("customTimes", JSON.stringify(customTimes))
+    } else {
+        e.preventDefault()
     }
 })

@@ -94,7 +94,7 @@ button {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .title-timer {
@@ -385,6 +385,24 @@ label {
 }
 
 /* custom time */
+
+.error{
+  display: flex;
+  gap: 4px;
+  color: red;
+  font-weight: bold;
+}
+
+.error2{
+  display: flex;
+  gap: 4px;
+  color: red;
+  font-weight: bold;
+}
+
+.red-color{
+  color: red;
+}
 
 .justtake{
   background-color: var(--selectedColor2);
