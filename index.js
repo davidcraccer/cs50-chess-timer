@@ -5,6 +5,7 @@ import hidePlayersSettings from "./utils/hidePlayerSetting.js";
 import { addPlayingEventListener } from "../utils/playerClickHandlers.js";
 
 const getQS = (id) => document.querySelector(id);
+const clickSound = document.getElementById("click-sound")
 
 // Initialize Clocks
 const secondClock = getQS("#clock2");
@@ -55,7 +56,7 @@ function firstTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "change-time") {
     isGameOn = true;
-    //clickSound.play();
+    clickSound.play();
 
     // Change the color of the field
     getQS(".second-tapping-field").style.backgroundColor = selectedColor;
@@ -109,7 +110,7 @@ function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time") {
     isGameOn = true;
-    //clickSound.play();
+    clickSound.play();
 
     // update the field
     getQS(".first-tapping-field").style.backgroundColor = selectedColor;

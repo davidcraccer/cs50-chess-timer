@@ -11,10 +11,18 @@ In `index.js`:
 - Display a pop-up in `customtime.html` when the chosen time already exists.
 - Ensure choosing a time in `customtime.html` is mandatory.
 
+### DONE: Added close button for color-theme pop-up in `timecontrol.html`
+
+### DONE: Added background color for time inputs in `customtime.html` on focus
+
+### DONE: Finished building `editpresets.html`
+
 ----------------------------------------------------------------------------------------
 
 ### TODO: min / max values are not working in fields at `index.html` and `customtime.html`
 - The fields in both HTML files behave differently.
 - min and max values are not functioning as expected.
 - Investigate and resolve the issue.
+
+### TODO: Add functionality of (Delete / Move / Edit)  `editpresets.js`
 
