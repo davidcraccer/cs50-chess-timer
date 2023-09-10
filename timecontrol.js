@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".color-theme").classList.remove("hidden")
     })
 
-    // Hide color selector pop-up and add user selected color
+    // Reload page and add user selected color
     document.getElementById("save-color").addEventListener("click", () =>{
         document.querySelector(".color-theme").classList.add("hidden")
         const radioButtons = document.getElementsByName("radioNoLabel")
@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         window.location.reload()
     })
+
+    // Hide color selector pop-up
+    document.querySelector(".move-right").addEventListener("click", ()=>{
+        document.querySelector(".color-theme").classList.add("hidden")
+    })    
 
     // Fetch user selected color
     let selectedColor = localStorage.getItem("selectedColor")
