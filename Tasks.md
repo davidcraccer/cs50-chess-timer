@@ -17,6 +17,10 @@ In `index.js`:
 
 ### DONE: Finished building `editpresets.html`
 
+### DONE: Added presets in localstorage
+
+### DONE: Added delete functionality in `editpresets.js`
+
 ----------------------------------------------------------------------------------------
 
 ### TODO: min / max values are not working in fields at `index.html` and `customtime.html`
@@ -24,5 +28,5 @@ In `index.js`:
 - min and max values are not functioning as expected.
 - Investigate and resolve the issue.
 
-### TODO: Add functionality of (Delete / Move / Edit)  `editpresets.js`
+### TODO: Add functionality of (Move / Edit)  `editpresets.js`
 
