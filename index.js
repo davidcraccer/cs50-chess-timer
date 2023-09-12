@@ -6,7 +6,7 @@ import { addPlayingEventListener } from "./utils/playerClickHandlers.js";
 import  { validateAndReplaceNaN } from "./utils/inputValidator.js";
 import { presets } from "/data/presets.js";
 const getQS = (id) => document.querySelector(id);
-const clickSound = document.getElementById("click-sound")
+const clickSound = getQS("#click-sound")
 
 // Initialize Clocks
 const secondClock = getQS("#clock2");
@@ -25,6 +25,7 @@ let isGameOn = false;
 let firstPlayerTurn = true;
 let moveCounter1 = 0;
 let moveCounter2 = 0;
+
 
 // Retrieve selected color
 let selectedColor = localStorage.getItem("selectedColor") ? localStorage.getItem("selectedColor") : "#7FA44F"

@@ -1,23 +1,20 @@
 // Add click to fields
-import { firstTapClickHandler, secondTapClickHandler} from '../main js/index.js'
+import getQS from '../helpers/getQS.js'
+import { firstTapClickHandler, secondTapClickHandler} from '../index.js'
 
 function addPlayingEventListener() {
-  document
-    .querySelector(".first-tapping-field")
-    .addEventListener("click", firstTapClickHandler);
-  document
-    .querySelector(".second-tapping-field")
-    .addEventListener("click", secondTapClickHandler);
+  getQS(".first-tapping-field")
+    .addEventListener("click", firstTapClickHandler)
+  getQS(".second-tapping-field")
+    .addEventListener("click", secondTapClickHandler)
 }
 
 // remove click from fields
 function removePlayingEventListener() {
-  document
-    .querySelector(".first-tapping-field")
-    .removeEventListener("click", firstTapClickHandler);
-  document
-    .querySelector(".second-tapping-field")
-    .removeEventListener("click", secondTapClickHandler);
+  getQS(".first-tapping-field")
+    .removeEventListener("click", firstTapClickHandler)
+  getQS(".second-tapping-field")
+    .removeEventListener("click", secondTapClickHandler)
 }
 
 export { addPlayingEventListener, removePlayingEventListener }

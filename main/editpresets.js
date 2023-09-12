@@ -8,7 +8,7 @@ document.documentElement.style.setProperty("--selectedColor3", selectedColor)
 // Feed all times in form-check
 for (let customtime of customTimes){
     getQS(".form-check").innerHTML += `
-        <div class="presets-box">
+        <div class="presets-box" draggable= true>
             <div class="presets-childs">
                 <input type="checkbox" value="" id="${customtime.time}" name="radio-group" class="preset-check form-check-input">
                 <label class="check-label" for="${customtime.time}">${customtime.label}</label><br>
@@ -24,6 +24,19 @@ for (let customtime of customTimes){
         </div>
     `
 }
+
+let counter = 0
+let checkedCounter = getQS(".checked-counter")
+document.querySelectorAll(".form-check-input").forEach(input => {
+    input.addEventListener("change", () => {
+        if (input.checked) {
+            counter++
+        } else {
+            counter--
+        }
+        checkedCounter.textContent = counter
+    })
+})
 
 // Delete a selected time from localstorage
 document.getElementById("delete-btn").addEventListener("click", ()=>{

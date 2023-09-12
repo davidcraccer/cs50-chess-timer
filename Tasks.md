@@ -1,32 +1,31 @@
-### DONE: Store Color in localStorage
-In `timecontrol.js`:
-- If there's nothing in localStorage, create a new JSON and store the color.
-- If there's something in localStorage, update it.
-
-In `index.js`:
-- Retrieve the color from localStorage.
-- If nothing is found, use a default color ("black" or {"r": 0, "g": 0, "b": 0}).
-
-### DONE: Add Pop-up in customtime.html for Existing Time
-- Display a pop-up in `customtime.html` when the chosen time already exists.
-- Ensure choosing a time in `customtime.html` is mandatory.
-
-### DONE: Added close button for color-theme pop-up in `timecontrol.html`
-
-### DONE: Added background color for time inputs in `customtime.html` on focus
-
-### DONE: Finished building `editpresets.html`
-
-### DONE: Added presets in localstorage
-
-### DONE: Added delete functionality in `editpresets.js`
-
-----------------------------------------------------------------------------------------
-
-### TODO: min / max values are not working in fields at `index.html` and `customtime.html`
-- The fields in both HTML files behave differently.
-- min and max values are not functioning as expected.
-- Investigate and resolve the issue.
 
 ### TODO: Add functionality of (Move / Edit)  `editpresets.js`
 
+Move the order of JSON in local storage
+each preset has its own id (order) and when the for example id number one is dragged to number 5, then everything till number 5 gets their (id - 1), id number 1 becomes 5.
+
+render presets by id again so it becomes from 1 to ...
+
+render(id) and is going to check each of the id of the preset
+
+use sort algorithm 
+
+loop the whole thing
+
+Edit preset
+
+open up a new div, with input field for its name like cutsom color
+
+---------------- 
+Index preset
+
+presets in data file gets these keys: hour, minute, second, increment
+
+in index:
+get presets from localstorage 
+parse the info into DIVS 
+each div/input(radio) has an id 
+when submitted pass the info into the clocks
+
+----
+incrementatition logic
