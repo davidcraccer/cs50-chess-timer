@@ -1,5 +1,5 @@
 // Creating presets
-let presets = [
+export let presets = [
     {
         label: "1 min",
         time: "1 min"
@@ -40,11 +40,5 @@ let presets = [
         label: "20 min",
         time: "20 min"
     },
-    {
-        label: "1 min",
-        time: "1 min"
-    }
   ]
   
-  // Saving presets in local storage
-  localStorage.setItem("customTimes", JSON.stringify(presets))

@@ -1,5 +1,5 @@
 // Add click to fields
-import { firstTapClickHandler, secondTapClickHandler} from '../index.js'
+import { firstTapClickHandler, secondTapClickHandler} from '../main js/index.js'
 
 function addPlayingEventListener() {
   document

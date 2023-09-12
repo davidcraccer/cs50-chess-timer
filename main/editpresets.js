@@ -1,4 +1,4 @@
-//? Im repeating this too much gotta do smth about it 
+import getQS from "../helpers/getQS.js"
 
 let selectedColor = localStorage.getItem("selectedColor")
 let customTimes = JSON.parse(localStorage.getItem("customTimes")) || []
@@ -7,7 +7,7 @@ document.documentElement.style.setProperty("--selectedColor3", selectedColor)
 
 // Feed all times in form-check
 for (let customtime of customTimes){
-    document.querySelector(".form-check").innerHTML += `
+    getQS(".form-check").innerHTML += `
         <div class="presets-box">
             <div class="presets-childs">
                 <input type="checkbox" value="" id="${customtime.time}" name="radio-group" class="preset-check form-check-input">

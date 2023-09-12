@@ -1,5 +1,5 @@
 // volumeControl.js
-import getQS from "../utils/getQS.js"; // Import any necessary utility functions
+import getQS from "../helpers/getQS.js"; // Import any necessary utility functions
 
 // Track sound state
 let isVolumeOn = true;

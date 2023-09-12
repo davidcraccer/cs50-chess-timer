@@ -1,13 +1,14 @@
+import getQS from "../helpers/getQS.js"
 document.addEventListener("DOMContentLoaded", function () {
     
     // Show color selector pop-up
-    document.getElementById("palette-btn").addEventListener("click", () =>{
-        document.querySelector(".color-theme").classList.remove("hidden")
+    getQS("#palette-btn").addEventListener("click", () =>{
+        getQS(".color-theme").classList.remove("hidden")
     })
 
     // Reload page and add user selected color
-    document.getElementById("save-color").addEventListener("click", () =>{
-        document.querySelector(".color-theme").classList.add("hidden")
+    getQS("#save-color").addEventListener("click", () =>{
+        getQS(".color-theme").classList.add("hidden")
         const radioButtons = document.getElementsByName("radioNoLabel")
         for (let radioButton of radioButtons){
             if (radioButton.checked){
@@ -19,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
     // Hide color selector pop-up
-    document.querySelector(".move-right").addEventListener("click", ()=>{
-        document.querySelector(".color-theme").classList.add("hidden")
+    getQS(".move-right").addEventListener("click", ()=>{
+        getQS(".color-theme").classList.add("hidden")
     })    
 
     // Fetch user selected color
@@ -40,8 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const darkerR = Math.round(r * 0.8)
     const darkerG = Math.round(g * 0.8)
     const darkerB = Math.round(b * 0.8)
-    const selectedColorDarker = `rgba(${darkerR}, ${darkerG}, ${darkerB}, 0.8)`
+    const selectedColorDarker = `rgb(${darkerR}, ${darkerG}, ${darkerB}, 0.8)`
     
+    // Store darker color in LocalStorage
+    localStorage.setItem("selectedColorDarker", selectedColorDarker)
+
     // Set the custom CSS variable with the value of 'selectedColor' 
     document.documentElement.style.setProperty('--selectedColor', selectedColor)
     document.documentElement.style.setProperty('--selectedColorDarker', selectedColorDarker)
@@ -51,9 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Add custom time to presets
     for (let customTime of customTimes){
-        document.querySelector(".radio-options").innerHTML += `
-            <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio">
+        getQS(".radio-options").innerHTML += `
+        <div class="d-flex justify-content-between">
+            <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio ">
             <label for="${customTime.time}">${customTime.label}</label><br>
-        `
+        </div>
+            `
     }
 })

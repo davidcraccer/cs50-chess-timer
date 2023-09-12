@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <!-- style sheet -->
-    <link href="index.css" rel="stylesheet">
+    <link href="../index.css" rel="stylesheet">
 
     <title>Chess Timer</title>
 </head>
@@ -44,7 +44,7 @@
         </div>
         <div>
             
-            <a href="timecontrol.html" id="timer-link" class="mx-3">
+            <a href="main/timecontrol.html" id="timer-link" class="mx-3">
                 <button id="timer-btn">
                     <span class="material-symbols-outlined">
                         timer
@@ -153,28 +153,6 @@
     <audio id="click-sound" autoplay="false">
         <source src="sound-effects/chess-clock-sound.m4a" type="audio/mpeg">
     </audio>
-    <script type="module"src="index.js"></script>
+    <script type="module" src="../main.js"></script>
 </body>
-<script>
-    // Get references to the input elements
-    const hoursInput = document.getElementById('hours');
-    const minutesInput = document.getElementById('minutes');
-    const secondsInput = document.getElementById('seconds');
-  
-    // Add event listeners to validate input
-    hoursInput.addEventListener('input', validateAndReplaceNaN);
-    minutesInput.addEventListener('input', validateAndReplaceNaN);
-    secondsInput.addEventListener('input', validateAndReplaceNaN);
-  
-    function validateAndReplaceNaN(event) {
-      const inputValue = event.target.value;
-  
-      // Use a regular expression to allow only two digits (00 to 99)
-      const validValue = inputValue.replace(/\D/g, '').substring(0, 2);
-  
-      // Replace NaN with 0
-      event.target.value = validValue || '00';
-    }
-  </script>
-  
 </html>

@@ -1,9 +1,10 @@
 // Get references to various HTML elements using their IDs and classes.
-import Clock from "/Clock.js";
+import Clock from "/data/Clock.js";
 import initializeTimer from "./buttons/initializeTimerBtns.js";
 import hidePlayersSettings from "./utils/hidePlayerSetting.js";
-import { addPlayingEventListener } from "../utils/playerClickHandlers.js";
-
+import { addPlayingEventListener } from "./utils/playerClickHandlers.js";
+import  { validateAndReplaceNaN } from "./utils/inputValidator.js";
+import { presets } from "/data/presets.js";
 const getQS = (id) => document.querySelector(id);
 const clickSound = document.getElementById("click-sound")
 
@@ -12,6 +13,12 @@ const secondClock = getQS("#clock2");
 let clock2 = new Clock(0, 0, 0, secondClock);
 const firstClock = getQS("#clock");
 let clock1 = new Clock(0, 0, 0, firstClock);
+
+// Initialize presets
+if (!localStorage.getItem("customTimes")) {
+  // Saving presets in local storage
+  localStorage.setItem("customTimes", JSON.stringify(presets))
+}
 
 let isGameOn = false;
 
@@ -182,3 +189,14 @@ timerSettingBtn2.addEventListener("click", () => {
   openTimerSetting(".adjust-time2");
 });
 
+
+
+// Get references to the input elements
+const hoursInput = document.getElementById('hours');
+const minutesInput = document.getElementById('minutes');
+const secondsInput = document.getElementById('seconds');
+
+// Add event listeners to validate input
+hoursInput.addEventListener('input', validateAndReplaceNaN);
+minutesInput.addEventListener('input', validateAndReplaceNaN);
+secondsInput.addEventListener('input', validateAndReplaceNaN);
