@@ -275,6 +275,7 @@ input[type="number"]::-webkit-inner-spin-button {
   overflow-y: auto;
   margin-bottom: 20px;
   width: 100%;
+  margin-left: 13em;
 }
 
 .radio-options::-webkit-scrollbar {
@@ -291,8 +292,8 @@ label {
 
 .custom-radio + label {
   position: relative;
-  padding-left: 10em;
   cursor: pointer;
+  padding-left: 10em;
 }
 
 .custom-radio + label::before {
@@ -313,7 +314,6 @@ label {
 .move-right{
   margin-left: 6.9em;
   font-size: 19px;
-  cursor: pointer;
 }
 
 
@@ -554,4 +554,34 @@ label {
 .plus2{
   font-size: 23px;
   color: var(--selectedColor3);
+}
+.edit-name{
+  background-color: #585451;
+  border: none;
+  padding: 8px 12px;
+  width: 100%;
+  margin: 0px 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+.edit-name::-webkit-input-placeholder{
+  color: whitesmoke;
+}
+
+.start-btn-other {
+  padding: 10px 0;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0px 3.5px var(--selectedColorDarker3);
+  font-weight: bolder;
+  font-size: 1.2rem;
+  width: 100%;
+  margin-bottom: 2em ;
+  background-color: var(--selectedColor3);
+}
+
+.move-right-other{
+  margin-left: 7.5em;
+  font-size: 19px;
 }

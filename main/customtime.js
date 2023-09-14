@@ -85,6 +85,12 @@ getQS("#save-custom-time").addEventListener("click", (e) => {
   const customTimeObject = {
     label: customName == "" ? newCustomTime : customName,
     time: newCustomTime,
+    hours: customHoursValue,
+    minutes: customMinutesValue,
+    second: customSecondsValue,
+    incrementH: incrementHoursValue,
+    incrementM: incrementMinutesValue,
+    incrementS: incrementSecondsValue
   };
 
   let customTimeAlreadyExists = false;
