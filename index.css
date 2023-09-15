@@ -516,7 +516,7 @@ label {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .form-check::-webkit-scrollbar{
@@ -566,7 +566,7 @@ label {
 }
 
 .edit-name::-webkit-input-placeholder{
-  color: whitesmoke;
+  color: var(--placeholder-color);
 }
 
 .start-btn-other {
