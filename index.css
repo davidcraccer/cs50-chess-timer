@@ -210,6 +210,13 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0;
 }
 
+.time-control-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .logo {
   width: 100px;
   height: 100px;
@@ -253,8 +260,8 @@ input[type="number"]::-webkit-inner-spin-button {
   box-shadow: 0px 3.5px var(--selectedColorDarker);
   font-weight: bolder;
   font-size: 1.2rem;
-  width: 100%;
-  margin-bottom: 2em;
+  width: 410px;
+  margin-bottom: 1em;
   background-color: var(--selectedColor);
 }
 
@@ -271,11 +278,14 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .radio-options {
-  max-height: 70px;
+  max-height: 88px;
   overflow-y: auto;
   margin-bottom: 20px;
   width: 100%;
   margin-left: 13em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .radio-options::-webkit-scrollbar {
@@ -510,13 +520,14 @@ label {
 
 /* edit presets */
 .form-check {
-  max-height: 120px;
+  max-height: 130px;
   overflow-y: auto;
   margin-bottom: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-left: 1em;
 }
 
 .form-check::-webkit-scrollbar{
@@ -584,4 +595,34 @@ label {
 .move-right-other{
   margin-left: 7.5em;
   font-size: 19px;
+}
+
+@media (max-width: 450px){
+  .custom-increment-field h6{
+    margin-right: 1.4em;
+  }
+
+  .time-control-main{
+    height: 700px;
+  }
+
+  .container{
+    width: 100%;
+  }
+
+  .radio-options{
+    max-height: 410px;
+    margin-left: 0px;
+    gap: 15px;
+  }
+
+  .start-btn{
+    width: 95%;
+  }
+
+  .form-check{
+    max-height: 460px;
+
+  }
+
 }
