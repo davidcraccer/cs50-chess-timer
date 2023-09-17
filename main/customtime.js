@@ -116,6 +116,7 @@ getQS("#save-custom-time").addEventListener("click", (e) => {
   if (!customTimeAlreadyExists && timeInputExists) {
     customTimes.push(customTimeObject)
     localStorage.setItem("customTimes", JSON.stringify(customTimes))
+    window.location.href = "timecontrol.html"
   } else {
     e.preventDefault()
   }
