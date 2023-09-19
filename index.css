@@ -219,8 +219,9 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 55%;
+  height: 55%;
+  margin: 20px 0px;
 }
 
 .title-back {
@@ -638,4 +639,8 @@ label::before{
     margin-left: 21.5em;
   }
 
+  .logo{
+    width: 195px;
+    height: 30px;
+  }
 }
