@@ -72,9 +72,24 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let customTime of customTimes) {
     radioOptions.innerHTML += `
     <div>
-            <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio ">
-            <label for="${customTime.time}">${customTime.label}</label>
+          <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio">
+          <label for="${customTime.time}">${customTime.label}</label>
     </div>
-            `
+    `
   }
+
+  getQS("#save-time").addEventListener("click", ()=>{
+    document.querySelectorAll(".custom-radio").forEach(radio => {
+      if (radio.checked){
+          customTimes.forEach((customtime) =>{
+              if (customtime.time == radio.id){
+                  //we can set local storage here
+                  //hen use elsewehre
+                  //
+              }
+          })
+      }
+    })
+  })
+
 })

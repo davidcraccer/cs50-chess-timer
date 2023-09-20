@@ -19,6 +19,34 @@ if (!localStorage.getItem("customTimes")) {
   // Saving presets in local storage
   localStorage.setItem("customTimes", JSON.stringify(presets))
 }
+if (!localStorage.getItem("playTime")) {
+  // Creating an object with the desired properties
+  const playTimeObject = {
+    label: "10 min",
+    time: "10 min",
+    hours: 0,
+    minutes: 10,
+    second: 0,
+    incrementH: 0,
+    incrementM: 0,
+    incrementS: 0
+  };
+
+  // Serializing the object to JSON and saving it in localStorage
+  localStorage.setItem("playTime", JSON.stringify(playTimeObject));
+}
+
+// pseudo code
+/**
+ * display the time from localstorage
+ * put these values into input
+ * 
+ * 2 players
+ * when they set different inputs, update 2 local stoargaes
+ * if there isnt a second localstorage then use the first one
+ * 
+ * use local storage first then use the inputs (in case they chnaged the input values)
+ */
 
 let isGameOn = false
 
@@ -201,3 +229,69 @@ const secondsInput = document.getElementById('seconds')
 hoursInput.addEventListener('input', validateAndReplaceNaN)
 minutesInput.addEventListener('input', validateAndReplaceNaN)
 secondsInput.addEventListener('input', validateAndReplaceNaN)
+
+
+function applyRotateStyles() {
+  // Create a link element for the CSS file
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "rotate.css";
+
+  // Add the link element to the head of the HTML document
+  document.head.appendChild(link);
+
+}
+
+function removeRotateStyles() {
+  // Remove the link element if it exists
+  var existingLink = document.querySelector("link[href='rotate.css']");
+  if (existingLink) {
+    existingLink.parentNode.removeChild(existingLink);
+  }
+}
+
+function applyHorizontalStyles() {
+  // Create a link element for the CSS file
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "horizontal.css"; 
+
+  // Add the link element to the head of the HTML document
+  document.head.appendChild(link);
+}
+
+function removeHorizontalStyles() {
+  // Remove the link element if it exists
+  var existingLink = document.querySelector("link[href='horizontal.css']");
+  if (existingLink) {
+    existingLink.parentNode.removeChild(existingLink);
+  }
+}
+
+// Check the initial orientation and apply styles accordingly
+if (window.innerWidth > window.innerHeight) {
+  // Initial orientation is horizontal
+  applyHorizontalStyles();
+  removeRotateStyles();
+} else {
+  // Initial orientation is vertical
+  applyRotateStyles();
+  removeHorizontalStyles();
+
+}
+
+// Listen for orientation change events
+window.addEventListener("resize", function () {
+  if (window.innerWidth > window.innerHeight) {
+    // Device is in a horizontal orientation
+    applyHorizontalStyles();
+    removeRotateStyles();
+  } else {
+    // Device is in a vertical orientation
+    applyRotateStyles();
+    removeHorizontalStyles();
+  }
+})
+

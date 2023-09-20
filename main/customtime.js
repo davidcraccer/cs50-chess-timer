@@ -81,7 +81,7 @@ getQS("#save-custom-time").addEventListener("click", (e) => {
     newCustomTime = newCustomTime.slice(0, -2)
   }
 
-  // Storing lebel and time in an object
+  // Storing label and time in an object
   const customTimeObject = {
     label: customName == "" ? newCustomTime : customName,
     time: newCustomTime,
