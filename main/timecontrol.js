@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
   radioOptions.innerHTML = "";
   
   // Add custom time to presets
-
   for (let customTime of customTimes) {
     radioOptions.innerHTML += `
     <div>
@@ -78,14 +77,23 @@ document.addEventListener("DOMContentLoaded", function () {
     `
   }
 
+  // Save selected preset to playTime
   getQS("#save-time").addEventListener("click", ()=>{
     document.querySelectorAll(".custom-radio").forEach(radio => {
       if (radio.checked){
           customTimes.forEach((customtime) =>{
               if (customtime.time == radio.id){
-                  //we can set local storage here
-                  //hen use elsewehre
-                  //
+                const playTimeObject = {
+                  label: customtime.label,
+                  time: customtime.time,
+                  hours: customtime.hours,
+                  minutes: customtime.minutes,
+                  second: customtime.second,
+                  incrementH: customtime.incrementH,
+                  incrementM: customtime.incrementM,
+                  incrementS: customtime.incrementS
+                }
+                localStorage.setItem("playTime", JSON.stringify(playTimeObject));
               }
           })
       }
