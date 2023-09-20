@@ -3,49 +3,49 @@ export let presets = [
     {
         label: "1 min",
         time: "1 min",
-        hours: "",
+        hours: 0,
         minutes: 1,
-        second: "",
-        incrementH: "",
-        incrementM: "",
-        incrementS: ""
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
+        incrementS: 0
     },
     {
         label: "1 min | 1 sec",
         time: "1 min | 1 sec",
-        hours: "",
+        hours: 0,
         minutes: 1,
-        second: "",
-        incrementH: "",
-        incrementM: "",
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
         incrementS: 1
     },   
     {
         label: "2 min | 1 sec",
         time: "2 min | 1 sec",
-        hours: "",
+        hours: 0,
         minutes: 2,
-        second: "",
-        incrementH: "",
-        incrementM: "",
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
         incrementS: 1
     },
     {
         label: "3 min",
         time: "3 min",
-        hours: "",
+        hours: 0,
         minutes: 3,
-        second: "",
-        incrementH: "",
-        incrementM: "",
-        incrementS: ""
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
+        incrementS: 0
     },   
     {
         label: "3 min | 2 sec",
         time: "3 min | 2 sec",
-        hours: "",
+        hours: 0,
         minutes: 3,
-        second: "",
+        second: 0,
         incrementH: "",
         incrementM: "",
         incrementS: 2
@@ -93,21 +93,21 @@ export let presets = [
     {
         label: "20 min",
         time: "20 min",
-        hours: "",
+        hours: 0,
         minutes: 20,
-        second: "",
-        incrementH: "",
-        incrementM: "",
-        incrementS: ""
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
+        incrementS: 0
     },
     {
         label: "30 min",
         time: "30 min",
-        hours: "",
+        hours: 0,
         minutes: 30,
-        second: "",
-        incrementH: "",
-        incrementM: "",
-        incrementS: ""
+        second: 0,
+        incrementH: 0,
+        incrementM: 0,
+        incrementS: 0
     },
 ];

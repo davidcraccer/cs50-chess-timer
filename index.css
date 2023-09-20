@@ -4,6 +4,9 @@
   user-select: none !important;
 }
 
+html{
+  overflow: hidden;
+}
 /* Typography */
 
 .clock {
@@ -23,9 +26,12 @@
     font-weight: 500;
 }
 
+.background-gray{
+  background-color: #585451;
+}
+
 /* Layout */
 body {
-  height: 100vh;
   background-color: whitesmoke;
   position: relative;
 }
@@ -60,6 +66,7 @@ a{
   transform: scale(130%);
 }
 
+
 .material-symbols-outlined {
   color: rgb(190, 190, 190);
   cursor: pointer;
@@ -87,11 +94,7 @@ a{
 }
 
 /* Vertical Screen */
-@media (min-width: 750px) {
-  .flip {
-    transform: degrees(180deg);
-  }
-}
+
 
 /* Time Adjust */
 .first-tapping-field, .second-tapping-field {
@@ -122,8 +125,9 @@ a{
   background-color: #26221f;
   border-radius: 5px;
   position: absolute;
-  top: 80px;
-  left: 34vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-shadow: 0 0 20px black;
 }
 
@@ -132,6 +136,10 @@ a{
   margin: 0;
   color: #86837e;
   margin-top: 10px;
+}
+
+.text-end{
+  margin-right: 1em;
 }
 
 .pick-time input,
@@ -262,9 +270,10 @@ input[type="number"]::-webkit-inner-spin-button {
   box-shadow: 0px 3.5px var(--selectedColorDarker);
   font-weight: bolder;
   font-size: 1.2rem;
-  width: 485px;
+  width: 100%;
   margin-bottom: 1em;
   background-color: var(--selectedColor);
+
 }
 
 .container {
@@ -274,7 +283,14 @@ input[type="number"]::-webkit-inner-spin-button {
   align-items: center;
 }
 
-.container h6 {
+.container-presets{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h6, .container-presets h6 {
   color: white;
   margin: 20px 0px;
 }
@@ -305,13 +321,13 @@ label {
 .custom-radio + label {
   position: relative;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 .custom-radio + label::before {
   content: "";
-  position: absolute;
-  left: 1em;
-  top: 0;
   width: 20px;
   height: 20px;
   border: 2px solid var(--selectedColor);
@@ -320,10 +336,6 @@ label {
 
 .custom-radio:checked + label::before {
   background-color: var(--selectedColor);
-}
-
-label::before{
-  margin-left: 27.6em;
 }
 
 .move-right{
@@ -608,22 +620,25 @@ label::before{
     margin-right: 1.4em;
   }
 
-  .time-control-main{
-    height: 700px;
-  }
 
   .container{
     width: 100%;
+    padding: 1em;
   }
 
-  .radio-options{
-    max-height: 410px;
-    margin-left: 0px;
-    gap: 15px;
+  .radio-options {
+    max-height: 320px;
+    gap: 1.5em;
   }
-
-  .start-btn{
-    width: 95%;
+  #sortable {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    width: 100%;
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .form-check{
@@ -631,12 +646,10 @@ label::before{
 
   }
 
-  .custom-radio + label {
-    padding-left: 0;
-  }
-
-  label::before{
-    margin-left: 24.1em;
+  .start-btn{
+    position: fixed;
+    bottom: 0;
+    width: 95%;
   }
 
   .logo{
@@ -644,3 +657,5 @@ label::before{
     height: 30px;
   }
 }
+
+
