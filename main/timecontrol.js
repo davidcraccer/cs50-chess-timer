@@ -68,12 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
   radioOptions.innerHTML = "";
   
   // Add custom time to presets
+
   for (let customTime of customTimes) {
-    getQS(".radio-options").innerHTML += `
-        <div class="d-flex justify-content-between">
+    radioOptions.innerHTML += `
+    <div>
             <input type="radio" id="${customTime.time}" name="radio-group" class="custom-radio ">
-            <label for="${customTime.time}">${customTime.label}</label><br>
-        </div>
-    `
+            <label for="${customTime.time}">${customTime.label}</label>
+    </div>
+            `
   }
 })

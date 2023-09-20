@@ -25,7 +25,6 @@
 
 /* Layout */
 body {
-  height: 100vh;
   background-color: whitesmoke;
   position: relative;
 }
@@ -262,9 +261,10 @@ input[type="number"]::-webkit-inner-spin-button {
   box-shadow: 0px 3.5px var(--selectedColorDarker);
   font-weight: bolder;
   font-size: 1.2rem;
-  width: 485px;
+  width: 100%;
   margin-bottom: 1em;
   background-color: var(--selectedColor);
+
 }
 
 .container {
@@ -305,13 +305,13 @@ label {
 .custom-radio + label {
   position: relative;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 .custom-radio + label::before {
   content: "";
-  position: absolute;
-  left: 1em;
-  top: 0;
   width: 20px;
   height: 20px;
   border: 2px solid var(--selectedColor);
@@ -320,10 +320,6 @@ label {
 
 .custom-radio:checked + label::before {
   background-color: var(--selectedColor);
-}
-
-label::before{
-  margin-left: 27.6em;
 }
 
 .move-right{
@@ -608,9 +604,9 @@ label::before{
     margin-right: 1.4em;
   }
 
-  .time-control-main{
+  /* .time-control-main{
     height: 700px;
-  }
+  } */
 
   .container{
     width: 100%;
