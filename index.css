@@ -19,6 +19,7 @@ html{
     font-family: "Montserrat", sans-serif;
     font-size: 1em;
     font-style: italic;
+    margin-right: 2em;
 }
 
 .time-mode {
@@ -136,10 +137,6 @@ a{
   margin: 0;
   color: #86837e;
   margin-top: 10px;
-}
-
-.text-end{
-  margin-right: 1em;
 }
 
 .pick-time input,

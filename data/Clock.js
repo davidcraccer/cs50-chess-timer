@@ -3,7 +3,7 @@ class Clock {
     this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.clockElement = clockElement;
     this.timerInterval = null;
-    this.lose = false
+    this.lose = false;
   }
 
   start() {
@@ -41,7 +41,7 @@ class Clock {
   updateClock(hours, minutes, seconds) {
     let formattedTime;
     if (hours == 0 && minutes == 0 && seconds == 0) {
-      formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`
+      formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`;
     } else if (hours == 0 && minutes == 0) {
       formattedTime = `${String(seconds)}s`;
     } else if (hours == 0) {
