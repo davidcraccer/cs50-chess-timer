@@ -1,7 +1,8 @@
 // Get references to various HTML elements using their IDs and classes.
 import Clock from "/data/Clock.js";
+import getQS from "./helpers/getQS.js";
 import initializeTimer from "./buttons/initializeTimerBtns.js";
-import hidePlayersSettings from "./utils/hidePlayerSetting.js";
+import initializeClock from "./utils/initializeClock.js";
 import initializeLocalStorage from "./utils/initializeLocalStorage.js";
 import { addPlayingEventListener } from "./utils/playerClickHandlers.js";
 import { validateAndReplaceNaN } from "./utils/inputValidator.js";
@@ -12,10 +13,13 @@ import {
   removeVerticalStyles,
 } from "./utils/rotateScreen.js";
 import updateFieldColor from "./utils/updateFieldColor.js";
-const getQS = (id) => document.querySelector(id);
+import {
+  moveCounterIncrementation
+} from "./states/moveCounterIncrementation.js";
+
 const clickSound = getQS("#click-sound");
 
-localStorage.clear();
+// localStorage.clear();
 
 // Initialize Clocks
 const firstClock = getQS("#clock");
@@ -29,6 +33,9 @@ const playTime = JSON.parse(localStorage.getItem("playTime"));
 const hours = parseInt(playTime.hours);
 const minutes = parseInt(playTime.minutes);
 const seconds = parseInt(playTime.seconds);
+const incrementH = parseInt(playTime.incrementH);
+const incrementM = parseInt(playTime.incrementM);
+const incrementS = parseInt(playTime.incrementS);
 const label = playTime.label;
 
 // Setting time mode as preset label
@@ -37,10 +44,6 @@ document.querySelectorAll(".time-mode").forEach((mode) => {
   clock1.updateClock(hours, minutes, seconds);
   clock2.updateClock(hours, minutes, seconds);
 });
-
-let firstPlayerTurn = true;
-let moveCounter1 = 0;
-let moveCounter2 = 0;
 
 // Retrieve selected color
 let selectedColor = localStorage.getItem("selectedColor")
@@ -95,32 +98,15 @@ function firstTapClickHandler(e) {
     );
 
     // Stops the incrementation of the first field tapped
-    moveCounter1 = isFirstPlayer(moveCounter1);
+    const totalMoves = moveCounterIncrementation(true);
 
     // initializes second clock
-    if (moveCounter1 + moveCounter2 < 2) {
-      // Use input values if available; otherwise, use local defaults.
-      const hoursInput2 = parseInt(getQS("#hours2").value, 10);
-      let minutesInput2 = parseInt(getQS("#minutes2").value, 10);
-      const secondsInput2 = parseInt(getQS("#seconds2").value, 10);
-
-      // Set the clock values based on input, with a fallback for all zeros.
-      if (!hoursInput2 && !minutesInput2 && !secondsInput2) {
-        clock2.setClock(hours, minutes, seconds);
-      } else {
-        if (!hoursInput2 && !minutesInput2 && !secondsInput2) {
-          minutesInput2 = 10;
-        }
-        clock2.setClock(hoursInput2, minutesInput2, secondsInput2);
-      }
-
-      hidePlayersSettings();
-
+    if (totalMoves < 2) {
+      initializeClock(clock2, "hours2", "minutes2", "seconds2");
       getQS("#play-btn").disabled = true;
+    } else {
+      clock1.increment(incrementH, incrementM, incrementS);
     }
-
-    // Increments the Move Counter
-    getQS("#move-counter-1").textContent = moveCounter1;
 
     // Add the click second event and removes the first click event
     firstTappingField.removeEventListener("click", firstTapClickHandler);
@@ -136,6 +122,8 @@ function secondTapClickHandler(e) {
   e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time") {
     clickSound.play();
+
+    // Change the color of the field
     updateFieldColor(
       firstClock,
       secondClock,
@@ -145,32 +133,15 @@ function secondTapClickHandler(e) {
     );
 
     // Stops the incrementation of the first tapped
-    moveCounter2 = isFirstPlayer(moveCounter2);
+    const totalMoves = moveCounterIncrementation(false);
 
     // initializes the first clock
-    if (moveCounter1 + moveCounter2 < 2) {
-      // Use input values if available; otherwise, use local defaults.
-      const hoursInput = parseInt(getQS("#hours").value, 10);
-      let minutesInput = parseInt(getQS("#minutes").value, 10);
-      const secondsInput = parseInt(getQS("#seconds").value, 10);
-
-      // Set the clock values based on input, with a fallback for all zeros.
-      if (!hoursInput && !minutesInput && !secondsInput) {
-        clock1.setClock(hours, minutes, seconds);
-      } else {
-        if (!hoursInput && !minutesInput && !secondsInput) {
-          minutesInput = 10;
-        }
-        clock1.setClock(hoursInput, minutesInput, secondsInput);
-      }
-
-      hidePlayersSettings();
-
+    if (totalMoves < 2) {
+      initializeClock(clock1, "hours", "minutes", "seconds");
       getQS("#play-btn").disabled = true;
+    } else {
+      clock2.increment(incrementH, incrementM, incrementS);
     }
-
-    // Increments the Move Counter
-    getQS("#move-counter-2").textContent = moveCounter2;
 
     // Add the click first event and removes the second event
     secondTappingField.removeEventListener("click", secondTapClickHandler);
@@ -183,15 +154,6 @@ function secondTapClickHandler(e) {
 
 export { firstTapClickHandler, secondTapClickHandler };
 
-function isFirstPlayer(moveCounter) {
-  if (!firstPlayerTurn) {
-    moveCounter++;
-    return moveCounter;
-  } else {
-    firstPlayerTurn = !firstPlayerTurn;
-    return 0;
-  }
-}
 ////////////////////////////////////////////////////////////////////////
 /** Volume */
 import { toggleVolume } from "./components/volumeControl.js";
