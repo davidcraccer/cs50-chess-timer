@@ -3,7 +3,7 @@ class Clock {
     this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.clockElement = clockElement;
     this.timerInterval = null;
-    this.lose = false
+    this.lose = false;
   }
 
   start() {
@@ -27,6 +27,18 @@ class Clock {
     }
   }
 
+  increment(hours, minutes, seconds) {
+    const incrementAmount = hours * 3600 + minutes * 60 + seconds;
+    this.totalSeconds += incrementAmount;
+
+    const hoursRemaining = Math.floor(this.totalSeconds / 3600);
+    const minutesRemaining = Math.floor((this.totalSeconds % 3600) / 60);
+    const secondsRemaining = this.totalSeconds % 60;
+    
+    // Update the clock display with the formatted time
+    this.updateClock(hoursRemaining, minutesRemaining, secondsRemaining);
+  }
+
   stop() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
@@ -41,7 +53,7 @@ class Clock {
   updateClock(hours, minutes, seconds) {
     let formattedTime;
     if (hours == 0 && minutes == 0 && seconds == 0) {
-      formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`
+      formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`;
     } else if (hours == 0 && minutes == 0) {
       formattedTime = `${String(seconds)}s`;
     } else if (hours == 0) {

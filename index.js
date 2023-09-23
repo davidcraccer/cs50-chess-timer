@@ -1,67 +1,59 @@
 // Get references to various HTML elements using their IDs and classes.
-import Clock from "/data/Clock.js"
-import initializeTimer from "./buttons/initializeTimerBtns.js"
-import hidePlayersSettings from "./utils/hidePlayerSetting.js"
-import { addPlayingEventListener } from "./utils/playerClickHandlers.js"
-import  { validateAndReplaceNaN } from "./utils/inputValidator.js"
-import { presets } from "/data/presets.js"
-const getQS = (id) => document.querySelector(id)
-const clickSound = getQS("#click-sound")
+import Clock from "/data/Clock.js";
+import getQS from "./helpers/getQS.js";
+import initializeTimer from "./buttons/initializeTimerBtns.js";
+import initializeClock from "./utils/initializeClock.js";
+import initializeLocalStorage from "./utils/initializeLocalStorage.js";
+import { addPlayingEventListener } from "./utils/playerClickHandlers.js";
+import { validateAndReplaceNaN } from "./utils/inputValidator.js";
+import {
+  applyHorizontalStyles,
+  applyVerticalStyles,
+  removeHorizontalStyles,
+  removeVerticalStyles,
+} from "./utils/rotateScreen.js";
+import updateFieldColor from "./utils/updateFieldColor.js";
+import {
+  moveCounterIncrementation
+} from "./states/moveCounterIncrementation.js";
+
+const clickSound = getQS("#click-sound");
+
+// localStorage.clear();
 
 // Initialize Clocks
-const secondClock = getQS("#clock2")
-let clock2 = new Clock(0, 0, 0, secondClock)
-const firstClock = getQS("#clock")
-let clock1 = new Clock(0, 0, 0, firstClock)
+const firstClock = getQS("#clock");
+const secondClock = getQS("#clock2");
+let clock1 = new Clock(0, 0, 0, firstClock);
+let clock2 = new Clock(0, 0, 0, secondClock);
 
-// Initialize presets
-if (!localStorage.getItem("customTimes")) {
-  // Saving presets in local storage
-  localStorage.setItem("customTimes", JSON.stringify(presets))
-}
-if (!localStorage.getItem("playTime")) {
-  // Creating an object with the desired properties
-  const playTimeObject = {
-    label: "10 min",
-    time: "10 min",
-    hours: 0,
-    minutes: 10,
-    second: 0,
-    incrementH: 0,
-    incrementM: 0,
-    incrementS: 0
-  };
+initializeLocalStorage();
 
-  // Serializing the object to JSON and saving it in localStorage
-  localStorage.setItem("playTime", JSON.stringify(playTimeObject));
-}
+const playTime = JSON.parse(localStorage.getItem("playTime"));
+const hours = parseInt(playTime.hours);
+const minutes = parseInt(playTime.minutes);
+const seconds = parseInt(playTime.seconds);
+const incrementH = parseInt(playTime.incrementH);
+const incrementM = parseInt(playTime.incrementM);
+const incrementS = parseInt(playTime.incrementS);
+const label = playTime.label;
 
-// pseudo code
-/**
- * display the time from localstorage
- * put these values into input
- * 
- * 2 players
- * when they set different inputs, update 2 local stoargaes
- * if there isnt a second localstorage then use the first one
- * 
- * use local storage first then use the inputs (in case they chnaged the input values)
- */
-
-let isGameOn = false
-
-let firstPlayerTurn = true
-let moveCounter1 = 0
-let moveCounter2 = 0
-
+// Setting time mode as preset label
+document.querySelectorAll(".time-mode").forEach((mode) => {
+  mode.textContent = label;
+  clock1.updateClock(hours, minutes, seconds);
+  clock2.updateClock(hours, minutes, seconds);
+});
 
 // Retrieve selected color
-let selectedColor = localStorage.getItem("selectedColor") ? localStorage.getItem("selectedColor") : "#7FA44F"
+let selectedColor = localStorage.getItem("selectedColor")
+  ? localStorage.getItem("selectedColor")
+  : "#7FA44F";
 
 // Execute code when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
   // Add click event listeners to game fields"
-  addPlayingEventListener()
+  addPlayingEventListener();
   initializeTimer(
     clock1,
     "cancel",
@@ -70,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "hours",
     "minutes",
     "seconds"
-  )
+  );
   initializeTimer(
     clock2,
     "cancel2",
@@ -79,207 +71,135 @@ document.addEventListener("DOMContentLoaded", function () {
     "hours2",
     "minutes2",
     "seconds2"
-  )
-})
+  );
+});
 
 // Start game
 getQS("#play-btn").addEventListener("click", (e) => {
-  firstTapClickHandler(e)
-})
+  firstTapClickHandler(e);
+});
+
+const firstTappingField = getQS(".first-tapping-field");
+const secondTappingField = getQS(".second-tapping-field");
 
 // First player field
 function firstTapClickHandler(e) {
-  e.stopPropagation()
+  e.stopPropagation();
   if (e.target.parentElement.id !== "change-time") {
-    isGameOn = true
-    clickSound.play()
+    clickSound.play();
 
     // Change the color of the field
-    getQS(".second-tapping-field").style.backgroundColor = selectedColor
-    secondClock.style.color = "white"
-    firstClock.style.color = "#323232"
-    getQS(".first-tapping-field").style.backgroundColor = ""
+    updateFieldColor(
+      secondClock,
+      firstClock,
+      secondTappingField,
+      firstTappingField,
+      selectedColor
+    );
 
     // Stops the incrementation of the first field tapped
-    if (!firstPlayerTurn) {
-      moveCounter1++
-    } else {
-      firstPlayerTurn = !firstPlayerTurn
-    }
+    const totalMoves = moveCounterIncrementation(true);
 
     // initializes second clock
-    if (moveCounter1 + moveCounter2 < 2) {
-      const hoursInput2 = parseInt(getQS("#hours2").value, 10)
-      let minutesInput2 = parseInt(getQS("#minutes2").value, 10)
-      const secondsInput2 = parseInt(getQS("#seconds2").value, 10)
-
-      if (hoursInput2 === 0 && minutesInput2 === 0 && secondsInput2 === 0) {
-        minutesInput2 = 10
-      }
-
-      clock2.setClock(hoursInput2, minutesInput2, secondsInput2)
-      hidePlayersSettings()
-
-      getQS("#play-btn").disabled = true
+    if (totalMoves < 2) {
+      initializeClock(clock2, "hours2", "minutes2", "seconds2");
+      getQS("#play-btn").disabled = true;
+    } else {
+      clock1.increment(incrementH, incrementM, incrementS);
     }
 
-    // Increments the Move Counter
-    getQS("#move-counter-1").textContent = moveCounter1
-
     // Add the click second event and removes the first click event
-    getQS(".first-tapping-field").removeEventListener(
-      "click",
-      firstTapClickHandler
-    )
-    getQS(".second-tapping-field").addEventListener(
-      "click",
-      secondTapClickHandler
-    )
+    firstTappingField.removeEventListener("click", firstTapClickHandler);
+    secondTappingField.addEventListener("click", secondTapClickHandler);
 
-    clock1.stop()
-    clock2.start()
+    clock1.stop();
+    clock2.start();
   }
 }
 
 // Second player field"
 function secondTapClickHandler(e) {
-  e.stopPropagation()
+  e.stopPropagation();
   if (e.target.parentElement.id !== "sec-change-time") {
-    isGameOn = true
-    clickSound.play()
+    clickSound.play();
 
-    // update the field
-    getQS(".first-tapping-field").style.backgroundColor = selectedColor
-    firstClock.style.color = "white"
-    secondClock.style.color = "#323232"
-    getQS(".second-tapping-field").style.backgroundColor = ""
+    // Change the color of the field
+    updateFieldColor(
+      firstClock,
+      secondClock,
+      firstTappingField,
+      secondTappingField,
+      selectedColor
+    );
 
     // Stops the incrementation of the first tapped
-    if (!firstPlayerTurn) {
-      moveCounter2++
-    } else {
-      firstPlayerTurn = !firstPlayerTurn
-    }
+    const totalMoves = moveCounterIncrementation(false);
 
     // initializes the first clock
-    if (moveCounter1 + moveCounter2 < 2) {
-      const hoursInput = parseInt(getQS("#hours").value, 10)
-      let minutesInput = parseInt(getQS("#minutes").value, 10)
-      const secondsInput = parseInt(getQS("#seconds").value, 10)
-
-      if (hoursInput === 0 && minutesInput === 0 && secondsInput === 0) {
-        minutesInput = 10
-      }
-
-      getQS("#play-btn").disabled = true
-
-      clock1.setClock(hoursInput, minutesInput, secondsInput)
-      hidePlayersSettings()
+    if (totalMoves < 2) {
+      initializeClock(clock1, "hours", "minutes", "seconds");
+      getQS("#play-btn").disabled = true;
+    } else {
+      clock2.increment(incrementH, incrementM, incrementS);
     }
 
-    // Increments the Move Counter
-    getQS("#move-counter-2").textContent = moveCounter2
-
     // Add the click first event and removes the second event
-    getQS(".second-tapping-field").removeEventListener(
-      "click",
-      secondTapClickHandler
-    )
-    getQS(".first-tapping-field").addEventListener(
-      "click",
-      firstTapClickHandler
-    )
+    secondTappingField.removeEventListener("click", secondTapClickHandler);
+    firstTappingField.addEventListener("click", firstTapClickHandler);
 
-    clock2.stop()
-    clock1.start()
+    clock2.stop();
+    clock1.start();
   }
 }
 
-export { firstTapClickHandler, secondTapClickHandler }
+export { firstTapClickHandler, secondTapClickHandler };
 
 ////////////////////////////////////////////////////////////////////////
 /** Volume */
-import { toggleVolume } from "./components/volumeControl.js"
-import { openTimerSetting } from "./components/timerSettings.js"
+import { toggleVolume } from "./components/volumeControl.js";
+import { openTimerSetting } from "./components/timerSettings.js";
 
 // Volume control
-const volumeBtn = getQS("#volume-btn")
-volumeBtn.addEventListener("click", toggleVolume)
+const volumeBtn = getQS("#volume-btn");
+volumeBtn.addEventListener("click", toggleVolume);
 
 // Player Timer Setting
-const timerSettingBtn = getQS("#change-time")
-const timerSettingBtn2 = getQS("#sec-change-time")
+const timerSettingBtn = getQS("#change-time");
+const timerSettingBtn2 = getQS("#sec-change-time");
 
 timerSettingBtn.addEventListener("click", () => {
-  openTimerSetting(".adjust-time")
-})
+  openTimerSetting(".adjust-time");
+});
 
 timerSettingBtn2.addEventListener("click", () => {
-  openTimerSetting(".adjust-time2")
-})
-
-
+  openTimerSetting(".adjust-time2");
+});
 
 // Get references to the input elements
-const hoursInput = document.getElementById('hours')
-const minutesInput = document.getElementById('minutes')
-const secondsInput = document.getElementById('seconds')
+const hoursInput = getQS("#hours");
+const minutesInput = getQS("#minutes");
+const secondsInput = getQS("#seconds");
+const hoursInput2 = getQS("#hours2");
+const minutesInput2 = getQS("#minutes2");
+const secondsInput2 = getQS("#seconds2");
 
 // Add event listeners to validate input
-hoursInput.addEventListener('input', validateAndReplaceNaN)
-minutesInput.addEventListener('input', validateAndReplaceNaN)
-secondsInput.addEventListener('input', validateAndReplaceNaN)
-
-
-function applyRotateStyles() {
-  // Create a link element for the CSS file
-  var link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.type = "text/css";
-  link.href = "rotate.css";
-
-  // Add the link element to the head of the HTML document
-  document.head.appendChild(link);
-
-}
-
-function removeRotateStyles() {
-  // Remove the link element if it exists
-  var existingLink = document.querySelector("link[href='rotate.css']");
-  if (existingLink) {
-    existingLink.parentNode.removeChild(existingLink);
-  }
-}
-
-function applyHorizontalStyles() {
-  // Create a link element for the CSS file
-  var link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.type = "text/css";
-  link.href = "horizontal.css"; 
-
-  // Add the link element to the head of the HTML document
-  document.head.appendChild(link);
-}
-
-function removeHorizontalStyles() {
-  // Remove the link element if it exists
-  var existingLink = document.querySelector("link[href='horizontal.css']");
-  if (existingLink) {
-    existingLink.parentNode.removeChild(existingLink);
-  }
-}
+hoursInput.addEventListener("input", validateAndReplaceNaN);
+minutesInput.addEventListener("input", validateAndReplaceNaN);
+secondsInput.addEventListener("input", validateAndReplaceNaN);
+hoursInput2.addEventListener("input", validateAndReplaceNaN);
+minutesInput2.addEventListener("input", validateAndReplaceNaN);
+secondsInput2.addEventListener("input", validateAndReplaceNaN);
 
 // Check the initial orientation and apply styles accordingly
 if (window.innerWidth > window.innerHeight) {
   // Initial orientation is horizontal
   applyHorizontalStyles();
-  removeRotateStyles();
+  removeVerticalStyles();
 } else {
   // Initial orientation is vertical
-  applyRotateStyles();
+  applyVerticalStyles();
   removeHorizontalStyles();
-
 }
 
 // Listen for orientation change events
@@ -287,11 +207,10 @@ window.addEventListener("resize", function () {
   if (window.innerWidth > window.innerHeight) {
     // Device is in a horizontal orientation
     applyHorizontalStyles();
-    removeRotateStyles();
+    removeVerticalStyles();
   } else {
     // Device is in a vertical orientation
-    applyRotateStyles();
+    applyVerticalStyles();
     removeHorizontalStyles();
   }
-})
-
+});
