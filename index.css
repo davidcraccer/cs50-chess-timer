@@ -34,7 +34,6 @@ html{
 /* Layout */
 body {
   background-color: whitesmoke;
-  position: relative;
 }
 
 body header {
@@ -220,7 +219,6 @@ input[type="number"]::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
 .logo {
@@ -278,6 +276,7 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid #585451;
 }
 
 .container-presets{
@@ -351,7 +350,7 @@ label {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -75%);
+  transform: translate(-50%, -50%);
   box-shadow: 0 0 20px black;
 }
 
@@ -542,7 +541,7 @@ label {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-left: 1em;
+  margin-left: 0.5em;
 }
 
 .form-check::-webkit-scrollbar{
@@ -558,6 +557,7 @@ label {
   display: flex;
   gap: 15px;
   align-items: center;
+  margin-right: 1em;
 }
 
 .preset-check{
@@ -643,9 +643,9 @@ label {
 
   }
 
-  .start-btn{
-    position: fixed;
+  .go-bottom{
     bottom: 0;
+    position: fixed;
     width: 95%;
   }
 
