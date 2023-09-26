@@ -7,7 +7,6 @@
 **`index.js`:**
 - `index.js` is the JavaScript file that powers the functionality of the Chess Clock app.
 - It imports various modules and functions to manage timers, user interactions, and game settings.
-- The file exports two functions, `firstTapClickHandler` and `secondTapClickHandler`, used to handle user actions during a chess game.
 
 **`index.html`:**
 - `index.html` is the main HTML file responsible for the user interface of the Chess Clock app.
@@ -80,6 +79,29 @@
 - Users can select and delete multiple presets at once, updating the list and local storage accordingly.
 - The script allows users to edit the names of presets and updates the names in the custom time presets array in local storage.
 - It also keeps track of the number of selected presets and displays it in the interface.
+
+//////////////////////////////////////////////////////////////////////////
+
+#### Folder (players)
+
+**`commonFunctions.js`:**
+- `commonFunctions.js` is a JavaScript module that contains common functions shared between two players in a game, such as managing clocks, 
+handling click events, and swapping click handlers.
+- It exports functions like `handleClockIncrement`, which determines whether to initialize or increment clocks based on the total moves, 
+`initializeClockAndDisableButton`, which initializes a clock and disables a play button, `swapClickHandlers`, which exchanges click event handlers 
+between primary and secondary players, and `startClock`, which starts the primary clock while stopping the secondary one.
+
+**`player1.js`:**
+- `player1.js` is a JavaScript module responsible for managing the actions and logic related to the first player in a game.
+- It imports and uses functions from `commonFunctions.js` to handle click events, initialize clocks, and swap click handlers between players.
+- Additionally, it defines a `firstTapClickHandler` function, which handles the logic for the first player's click events, and an `incrementFirstClock` 
+function to increment the first player's clock.
+
+**`player2.js`:**
+- `player2.js` is a JavaScript module responsible for managing the actions and logic related to the second player in a game.
+- Similar to `player1.js`, it imports and uses functions from `commonFunctions.js` to handle click events, initialize clocks, and swap click handlers between players.
+- It defines a `secondTapClickHandler` function, which handles the logic for the second player's click events, and an `incrementSecondClock` function to increment the 
+second player's clock.
 
 //////////////////////////////////////////////////////////////////////////
 
