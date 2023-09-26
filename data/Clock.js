@@ -1,3 +1,5 @@
+import { removePlayingEventListener } from "../utils/playerClickHandlers.js";
+
 class Clock {
   constructor(hours, minutes, seconds, clockElement) {
     this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
@@ -46,6 +48,7 @@ class Clock {
     }
   }
 
+
   setClock(hours, minutes, seconds) {
     this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
   }
@@ -54,6 +57,7 @@ class Clock {
     let formattedTime;
     if (hours == 0 && minutes == 0 && seconds == 0) {
       formattedTime = `<img src="https://i.redd.it/m4r7p5k99yt81.png" alt="Zero Time" class="img-fluid d-block mx-auto rounded" />`;
+      removePlayingEventListener();
     } else if (hours == 0 && minutes == 0) {
       formattedTime = `${String(seconds)}s`;
     } else if (hours == 0) {
